@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FORME — Furniture for the Considered Home</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Jost:wght@200;300;400;500&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- CUSTOM CURSOR  -->
+
+    <div class="cursor" id="cur"></div>
+    <div class="cursor-ring" id="curRing"></div>
+
+    <!-- MOBILE MENU -->
+
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="Collection.html" onclick="closeMobileMenu()">Collections</a>
+        <a href="Shop.html" onclick="closeMobileMenu()">Shop</a>
+        <a href="Atelier.html" onclick="closeMobileMenu()">Atelier</a>
+        <a href="Review.html" onclick="closeMobileMenu()">Reviews</a>
+        <a href="Contact.html" onclick="closeMobileMenu()">Contact</a>
+        <div class="mobile-menu-actions">
+            <a href="#">Search</a>
+            <a href="#">Wishlist</a>
+            <button  class="nav-cart" id="mobileCartBtn" style="cursor:pointer" 
+                onclick="showToast('🛒 Your cart is empty — start exploring') ">Cart (0)</button>
+        </div>
+    </div>
+
+    <!-- NAV -->
+
+    <nav>
+        <a href="index.html" class="nav-logo">FORM<span style="font-style:italic">E</span></a>
+        <div class="nav-center">
+            <a href="Collection.html">Collections</a>
+            <a href="Shop.html">Shop</a>
+            <a href="Atelier.html">Atelier</a>
+            <a href="Review.html">Reviews</a>
+            <a href="Contact.html">Contact</a>
+        </div>
+        <div class="nav-right">
+            <a href="#">Search</a>
+            <a href="#">Wishlist</a>
+            <button class="nav-cart" id="cartBtn" onclick="showToast('🛒 Your cart is empty — start exploring')">Cart
+                (0)</button>
+            <button class="nav-hamburger" id="hamburger" aria-label="Open menu" onclick="toggleMenu()">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section id="hero">
+        <div class="hero-left">
+            <p class="hero-eyebrow">New Collection — Autumn 2025</p>
+            <h1 class="hero-title">
+                Objects Made<br />for <em>Living,</em><br />Not Just Looking
+            </h1>
+            <p class="hero-sub">Each piece is conceived in our studio and brought to life by master craftspeople across
+                Italy
+                and Scandinavia. Furniture that earns its place.</p>
+            <div class="hero-actions">
+                <a href="Collection.html"><button class="btn-gold">Explore the Collection</button></a>
+                <a href="#editorial" class="hero-link">Our Atelier</a>
+            </div>
+            <div class="hero-scroll">
+                <div class="scroll-line"></div>
+                <span class="scroll-text">Scroll to discover</span>
+            </div>
+        </div>
+        <div class="hero-right">
+            <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=1200&q=85&fit=crop"
+                alt="Signature sofa in a light filled living room" id="heroImg" />
+            <div class="hero-overlay"></div>
+            <div class="hero-float">
+                <div class="float-label">Featured</div>
+                <div class="float-name">Serene Linen Sofa</div>
+                <div class="float-price">From $3,200</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TICKER STRIP -->
+    <div class="strip">
+        <div class="strip-inner">
+            <span class="strip-item accent">Free White Glove Delivery</span>
+            <span class="strip-item">Handcrafted in Europe</span>
+            <span class="strip-item accent">Lifetime Structural Warranty</span>
+            <span class="strip-item">FSC-Certified Timber</span>
+            <span class="strip-item accent">30-Day Free Returns</span>
+            <span class="strip-item">Bespoke Sizing Available</span>
+            <span class="strip-item accent">Interest-Free Finance</span>
+            <span class="strip-item">1,200+ Curated Pieces</span>
+            <span class="strip-item accent">Free White Glove Delivery</span>
+            <span class="strip-item">Handcrafted in Europe</span>
+            <span class="strip-item accent">Lifetime Structural Warranty</span>
+            <span class="strip-item">FSC-Certified Timber</span>
+            <span class="strip-item accent">30-Day Free Returns</span>
+            <span class="strip-item">Bespoke Sizing Available</span>
+            <span class="strip-item accent">Interest-Free Finance</span>
+            <span class="strip-item">1,200+ Curated Pieces</span>
+        </div>
+    </div>
+
+    <!-- CATEGORIES -->
+    <section id="categories">
+        <div class="cat-header reveal">
+            <div>
+                <p class="s-tag">Shop by Room</p>
+                <h2 class="s-title">Every Room,<br /><em>Considered</em></h2>
+            </div>
+            <a href="#" class="cat-more">Browse All Collections →</a>
+        </div>
+        <div class="cat-grid">
+            <div class="cat-card reveal" style="min-height:360px"
+                onclick="showToast('Opening Living Room collection…')">
+                <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&q=85&fit=crop"
+                    alt="Living Room" loading="lazy" />
+                <div class="cat-card-body">
+                    <div>
+                        <div class="cat-card-name">Living Room</div>
+                        <div class="cat-count">186 Pieces</div>
+                    </div>
+                </div>
+                <div class="cat-arrow">↗</div>
+            </div>
+            <div class="cat-card reveal" onclick="showToast('Opening Bedroom collection…')">
+                <img src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=600&q=85&fit=crop"
+                    alt="Bedroom" loading="lazy" />
+                <div class="cat-card-body">
+                    <div>
+                        <div class="cat-card-name">Bedroom</div>
+                        <div class="cat-count">124 Pieces</div>
+                    </div>
+                </div>
+                <div class="cat-arrow">↗</div>
+            </div>
+            <div class="cat-card reveal" onclick="showToast('Opening Dining collection…')">
+                <img src="https://images.unsplash.com/photo-1617806118233-18e1de247200?w=600&q=85&fit=crop" alt="Dining"
+                    loading="lazy" />
+                <div class="cat-card-body">
+                    <div>
+                        <div class="cat-card-name">Dining Room</div>
+                        <div class="cat-count">97 Pieces</div>
+                    </div>
+                </div>
+                <div class="cat-arrow">↗</div>
+            </div>
+            <div class="cat-card reveal" onclick="showToast('Opening Home Office collection…')">
+                <img src="https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=600&q=85&fit=crop" alt="Office"
+                    loading="lazy" />
+                <div class="cat-card-body">
+                    <div>
+                        <div class="cat-card-name">Home Office</div>
+                        <div class="cat-count">63 Pieces</div>
+                    </div>
+                </div>
+                <div class="cat-arrow">↗</div>
+            </div>
+            <div class="cat-card reveal" onclick="showToast('Opening Outdoor collection…')">
+                <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=600&q=85&fit=crop"
+                    alt="Outdoor" loading="lazy" />
+                <div class="cat-card-body">
+                    <div>
+                        <div class="cat-card-name">Outdoor</div>
+                        <div class="cat-count">52 Pieces</div>
+                    </div>
+                </div>
+                <div class="cat-arrow">↗</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURED PRODUCTS -->
+    <section id="featured">
+        <div class="feat-header reveal">
+            <div>
+                <p class="s-tag">Bestsellers</p>
+                <h2 class="s-title">Curated for<br /><em>Your Home</em></h2>
+            </div>
+            <a href="#" class="cat-more">View All Products →</a>
+        </div>
+        <div class="product-grid">
+            <div class="product-card reveal">
+                <div class="p-img">
+                    <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=700&q=80&fit=crop"
+                        alt="Serene Sofa" loading="lazy" />
+                    <span class="p-badge new">New</span>
+                    <button class="p-wish" onclick="wishlist(this,'Serene Sofa')">♡</button>
+                </div>
+                <div class="p-body">
+                    <div class="p-cat">Sofas & Sectionals</div>
+                    <div class="p-name">Serene Three-Seater Sofa</div>
+                    <div class="p-material">Natural Linen · Solid Oak Frame</div>
+                    <div class="p-foot">
+                        <div class="p-price">$3,200</div>
+                        <button class="p-add" onclick="addCart('Serene Sofa')">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card reveal">
+                <div class="p-img">
+                    <img src="https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=700&q=80&fit=crop"
+                        alt="Arc Chair" loading="lazy" />
+                    <span class="p-badge sale">Sale</span>
+                    <button class="p-wish" onclick="wishlist(this,'Arc Chair')">♡</button>
+                </div>
+                <div class="p-body">
+                    <div class="p-cat">Accent Chairs</div>
+                    <div class="p-name">Arc Boucle Accent Chair</div>
+                    <div class="p-material">Ivory Boucle · Walnut Legs</div>
+                    <div class="p-foot">
+                        <div class="p-price"><s>$1,490</s>$1,190</div>
+                        <button class="p-add" onclick="addCart('Arc Chair')">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card reveal">
+                <div class="p-img">
+                    <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=700&q=80&fit=crop"
+                        alt="Nest Bed" loading="lazy" />
+                    <button class="p-wish" onclick="wishlist(this,'Nest Bed')">♡</button>
+                </div>
+                <div class="p-body">
+                    <div class="p-cat">Beds & Frames</div>
+                    <div class="p-name">Nest King Platform Bed</div>
+                    <div class="p-material">Smoked Oak · Linen Headboard</div>
+                    <div class="p-foot">
+                        <div class="p-price">$3,850</div>
+                        <button class="p-add" onclick="addCart('Nest Bed')">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card reveal">
+                <div class="p-img">
+                    <img src="https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?w=700&q=80&fit=crop"
+                        alt="Oslo Dining" loading="lazy" />
+                    <span class="p-badge new">New</span>
+                    <button class="p-wish" onclick="wishlist(this,'Oslo Table')">♡</button>
+                </div>
+                <div class="p-body">
+                    <div class="p-cat">Dining Tables</div>
+                    <div class="p-name">Oslo Extending Dining Table</div>
+                    <div class="p-material">White Oak · Extends 160–240cm</div>
+                    <div class="p-foot">
+                        <div class="p-price">$2,650</div>
+                        <button class="p-add" onclick="addCart('Oslo Table')">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card reveal">
+                <div class="p-img">
+                    <img src="https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=700&q=80&fit=crop"
+                        alt="Pebble Table" loading="lazy" />
+                    <span class="p-badge sale">Sale</span>
+                    <button class="p-wish" onclick="wishlist(this,'Pebble Table')">♡</button>
+                </div>
+                <div class="p-body">
+                    <div class="p-cat">Coffee Tables</div>
+                    <div class="p-name">Pebble Travertine Table</div>
+                    <div class="p-material">Ivory Travertine · Brass Base</div>
+                    <div class="p-foot">
+                        <div class="p-price"><s>$1,890</s>$1,490</div>
+                        <button class="p-add" onclick="addCart('Pebble Table')">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card reveal">
+                <div class="p-img">
+                    <img src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=700&q=80&fit=crop"
+                        alt="Archer Shelves" loading="lazy" />
+                    <button class="p-wish" onclick="wishlist(this,'Archer Shelves')">♡</button>
+                </div>
+                <div class="p-body">
+                    <div class="p-cat">Storage & Shelving</div>
+                    <div class="p-name">Archer Open Bookcase</div>
+                    <div class="p-material">Natural Oak · 5 Shelves</div>
+                    <div class="p-foot">
+                        <div class="p-price">$1,280</div>
+                        <button class="p-add" onclick="addCart('Archer Bookcase')">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EDITORIAL SPLIT -->
+    <section id="editorial">
+        <div class="ed-img reveal-left">
+            <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=900&q=85&fit=crop"
+                alt="Artisan workshop" loading="lazy" />
+        </div>
+        <div class="ed-content reveal-right">
+            <p class="ed-tag">The Forme Atelier</p>
+            <h2 class="ed-title">Made with Hands.<br /><em>Meant to Last.</em></h2>
+            <p class="ed-text">FORME was founded on one conviction: that the objects you live with should be worthy of
+                the
+                life you're living. Every joint, finish, and proportion is deliberate. Nothing is manufactured in haste.
+            </p>
+            <p class="ed-text">We partner with family-run workshops in Northern Italy, the Faroe Islands, and Kyoto —
+                places
+                where the knowledge of making is passed down, not just trained.</p>
+            <button class="btn-outline-lt" onclick="showToast('Our full story is coming soon')">Discover Our
+                Craft</button>
+            <div class="ed-pillars">
+                <div class="pillar">
+                    <div class="pillar-num">18</div>
+                    <div class="pillar-title">Years of craft</div>
+                    <div class="pillar-desc">Atelier founded in Florence, 2007.</div>
+                </div>
+                <div class="pillar">
+                    <div class="pillar-num">40k</div>
+                    <div class="pillar-title">Homes furnished</div>
+                    <div class="pillar-desc">Across 32 countries worldwide.</div>
+                </div>
+                <div class="pillar">
+                    <div class="pillar-num">∞</div>
+                    <div class="pillar-title">Warranty</div>
+                    <div class="pillar-desc">Every structural component, forever.</div>
+                </div>
+                <div class="pillar">
+                    <div class="pillar-num">0</div>
+                    <div class="pillar-title">Compromises</div>
+                    <div class="pillar-desc">We never cut corners. Literally.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SHOWCASE GRID -->
+    <section id="showcase">
+        <div class="reveal">
+            <p class="s-tag">As Seen In Homes</p>
+            <h2 class="s-title">Real Rooms,<br /><em>Real People</em></h2>
+        </div>
+        <div class="showcase-grid">
+            <div class="showcase-card" style="min-height:420px">
+                <img src="https://homeinterior.com.pk/wp-content/uploads/2024/07/drawing-room-sofa-12-1.jpg"
+                    alt="Living room styled" loading="lazy" />
+                <div class="sc-overlay">
+                    <div>
+                        <div class="sc-label">The Full Living Room</div>
+                        <div class="sc-sub">Shop the look →</div>
+                    </div>
+                </div>
+            </div>
+            <div class="showcase-card" style="aspect-ratio:4/3">
+                <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=700&q=80&fit=crop"
+                    alt="Bedroom styled" loading="lazy" />
+                <div class="sc-overlay">
+                    <div>
+                        <div class="sc-label">The Bedroom Edit</div>
+                        <div class="sc-sub">Shop the look →</div>
+                    </div>
+                </div>
+            </div>
+            <div class="showcase-card" style="aspect-ratio:4/3">
+                <img src="https://images.unsplash.com/photo-1616047006789-b7af5afb8c20?w=700&q=80&fit=crop"
+                    alt="Dining styled" loading="lazy" />
+                <div class="sc-overlay">
+                    <div>
+                        <div class="sc-label">The Dining Room</div>
+                        <div class="sc-sub">Shop the look →</div>
+                    </div>
+                </div>
+            </div>
+            <div class="showcase-card" style="aspect-ratio:4/3">
+                <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=700&q=80&fit=crop"
+                    alt="Bathroom styled" loading="lazy" />
+                <div class="sc-overlay">
+                    <div>
+                        <div class="sc-label">The Study</div>
+                        <div class="sc-sub">Shop the look →</div>
+                    </div>
+                </div>
+            </div>
+            <div class="showcase-card" style="aspect-ratio:4/3">
+                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=700&q=80&fit=crop"
+                    alt="Outdoor styled" loading="lazy" />
+                <div class="sc-overlay">
+                    <div>
+                        <div class="sc-label">Outdoor Living</div>
+                        <div class="sc-sub">Shop the look →</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section id="testimonials">
+        <div class="reveal" style="text-align:center;max-width:500px;margin:0 auto 3.5rem">
+            <p class="s-tag">What Our Customers Say</p>
+            <h2 class="s-title">Homes That<br /><em>Love Us Back</em></h2>
+        </div>
+        <div class="testi-wrap">
+            <div class="testi reveal">
+                <div class="testi-q">"</div>
+                <p class="testi-text">The Serene sofa arrived and completely changed how our family uses the living
+                    room. It's
+                    not just beautiful — it's the most comfortable piece of furniture we've ever owned.</p>
+                <div class="testi-hr"></div>
+                <div class="testi-author">
+                    <div class="testi-av">SR</div>
+                    <div>
+                        <div class="testi-name">Sarah R.</div>
+                        <div class="testi-place">London, United Kingdom</div>
+                        <div class="testi-stars">★★★★★</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testi reveal">
+                <div class="testi-q">"</div>
+                <p class="testi-text">Three months searching for the right dining table. The Oslo was worth every wait.
+                    Solid,
+                    elegant, and my guests comment on it every single time. Worth every penny.</p>
+                <div class="testi-hr"></div>
+                <div class="testi-author">
+                    <div class="testi-av">MK</div>
+                    <div>
+                        <div class="testi-name">Marcus K.</div>
+                        <div class="testi-place">Amsterdam, Netherlands</div>
+                        <div class="testi-stars">★★★★★</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testi reveal">
+                <div class="testi-q">"</div>
+                <p class="testi-text">The delivery team placed everything perfectly and even gave advice on arrangement.
+                    FORME
+                    operates at a completely different level to every other furniture brand I've tried.</p>
+                <div class="testi-hr"></div>
+                <div class="testi-author">
+                    <div class="testi-av">AL</div>
+                    <div>
+                        <div class="testi-name">Amelia L.</div>
+                        <div class="testi-place">New York, United States</div>
+                        <div class="testi-stars">★★★★★</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROMISE BAR -->
+    <div id="promise">
+        <div class="promise-item reveal">
+            <div class="promise-icon">🚚</div>
+            <div class="promise-title">White Glove Delivery</div>
+            <div class="promise-desc">Delivered, assembled, and placed by our specialist team. Packaging removed.</div>
+        </div>
+        <div class="promise-item reveal">
+            <div class="promise-icon">🌿</div>
+            <div class="promise-title">Sustainably Sourced</div>
+            <div class="promise-desc">100% FSC-certified timber. Natural, renewable materials throughout.</div>
+        </div>
+        <div class="promise-item reveal">
+            <div class="promise-icon">🔧</div>
+            <div class="promise-title">Lifetime Warranty</div>
+            <div class="promise-desc">Every structural element covered for the life of the piece. No exceptions.</div>
+        </div>
+        <div class="promise-item reveal">
+            <div class="promise-icon">↩</div>
+            <div class="promise-title">30-Day Returns</div>
+            <div class="promise-desc">Changed your mind? Full free collection and refund, no questions asked.</div>
+        </div>
+    </div>
+
+    <!-- NEWSLETTER -->
+    <section id="newsletter">
+        <div class="nl-left reveal-left">
+            <p class="s-tag">Stay Informed</p>
+            <h2 class="s-title">First to the<br /><em>Collection</em></h2>
+            <p class="nl-desc" style="margin-top:1.5rem">Join our community of considered homeowners. New arrivals,
+                exclusive
+                previews, and design thinking — delivered with intention, never in excess.</p>
+        </div>
+        <div class="nl-right reveal-right">
+            <div class="nl-form">
+                <input type="text" class="nl-input" placeholder="Your full name" id="nlName" />
+                <input type="email" class="nl-input" placeholder="your@email.com" id="nlEmail" />
+                <button class="nl-btn" onclick="subscribe()">Join the List</button>
+                <p class="nl-note">We respect your privacy. Unsubscribe at any time. No spam — ever.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="foot-top">
+            <div>
+                <div class="foot-logo">FORM<span>E</span></div>
+                <p class="foot-about">Luxury furniture conceived in our Florentine studio and crafted by artisans across
+                    Europe.
+                    For homes that value enduring beauty over fleeting trends.</p>
+                <div class="foot-social">
+                    <a href="#">Instagram</a>
+                    <a href="#">Pinterest</a>
+                    <a href="#">Houzz</a>
+                    <a href="#">LinkedIn</a>
+                </div>
+            </div>
+            <div class="foot-col">
+                <h5>Collections</h5>
+                <ul>
+                    <li><a href="#">Living Room</a></li>
+                    <li><a href="#">Bedroom</a></li>
+                    <li><a href="#">Dining Room</a></li>
+                    <li><a href="#">Home Office</a></li>
+                    <li><a href="#">Outdoor</a></li>
+                    <li><a href="#">New Arrivals</a></li>
+                </ul>
+            </div>
+            <div class="foot-col">
+                <h5>Company</h5>
+                <ul>
+                    <li><a href="#">Our Atelier</a></li>
+                    <li><a href="#">Craftspeople</a></li>
+                    <li><a href="#">Sustainability</a></li>
+                    <li><a href="#">Trade Programme</a></li>
+                    <li><a href="#">Press</a></li>
+                    <li><a href="#">Careers</a></li>
+                </ul>
+            </div>
+            <div class="foot-col">
+                <h5>Customer Care</h5>
+                <ul>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Delivery & Assembly</a></li>
+                    <li><a href="#">Returns</a></li>
+                    <li><a href="#">Care Guide</a></li>
+                    <li><a href="#">Warranty</a></li>
+                    <li><a href="#">Finance Options</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="foot-bottom">
+            <p class="foot-copy">© 2025 FORME Studio Ltd. All rights reserved. Registered in England & Wales.</p>
+            <div class="foot-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms & Conditions</a>
+                <a href="#">Cookie Settings</a>
+            </div>
+        </div>
+    </footer>
+
+    <div class="toast" id="toast"></div>
+
+
+</body>
+<script src="script.js"></script>
+
+</html>

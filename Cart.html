@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Collections — FORME</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Jost:wght@200;300;400;500&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<script>
+    // ADD THIS AT THE VERY TOP OF YOUR INLINE SCRIPT
+    // ===============================================
+    function toggleMenu() {
+        const menu = document.getElementById('mobileMenu');
+        const btn = document.getElementById('hamburger');
+        if (!menu || !btn) return;
+        const open = menu.classList.toggle('open');
+        btn.classList.toggle('open', open);
+        document.body.style.overflow = open ? 'hidden' : '';
+    }
+    function closeMobileMenu() {
+        const menu = document.getElementById('mobileMenu');
+        const btn = document.getElementById('hamburger');
+        if (!menu || !btn) return;
+        menu.classList.remove('open');
+        btn.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+    // ===============================================
+
+    // ... then the rest of your inline script ...
+</script>
+
+<body>
+
+    <!-- CUSTOM CURSOR  -->
+
+    <div class="cursor" id="cur"></div>
+    <div class="cursor-ring" id="curRing"></div>
+
+    <!-- MOBILE MENU -->
+
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="Collection.html" onclick="closeMobileMenu()">Collections</a>
+        <a href="Shop.html" onclick="closeMobileMenu()">Shop</a>
+        <a href="Atelier.html" onclick="closeMobileMenu()">Atelier</a>
+        <a href="Review.html" onclick="closeMobileMenu()">Reviews</a>
+        <a href="Contact.html" onclick="closeMobileMenu()">Contact</a>
+        <div class="mobile-menu-actions">
+            <a href="#">Search</a>
+            <a href="#">Wishlist</a>
+            <button class="nav-cart" id="mobileCartBtn" style="cursor:pointer"
+                onclick="showToast('🛒 Your cart is empty — start exploring')">Cart (0)</button>
+        </div>
+    </div>
+
+    <!-- NAV -->
+
+    <nav>
+        <a href="index.html" class="nav-logo">FORM<span style="font-style:italic">E</span></a>
+        <div class="nav-center">
+            <a href="Collection.html" class="active">Collections</a>
+            <a href="Shop.html">Shop</a>
+            <a href="Atelier.html">Atelier</a>
+            <a href="Review.html">Reviews</a>
+            <a href="Contact.html">Contact</a>
+        </div>
+        <div class="nav-right">
+            <a href="#">Search</a>
+            <a href="#">Wishlist</a>
+            <button class="nav-cart" id="cartBtn" onclick="showToast('🛒 Your cart is empty — start exploring')">Cart
+                (0)</button>
+            <button class="nav-hamburger" id="hamburger" aria-label="Open menu" onclick="toggleMenu()">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+
+
+
+</body>
+<script src="script.js"></script>
+
+</html>

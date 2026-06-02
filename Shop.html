@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shop — FORME</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Jost:wght@200;300;400;500&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="style.css">  
+
+   
+</head>
+<script>
+    // ADD THIS AT THE VERY TOP OF YOUR INLINE SCRIPT
+    // ===============================================
+    function toggleMenu() {
+        const menu = document.getElementById('mobileMenu');
+        const btn = document.getElementById('hamburger');
+        if (!menu || !btn) return;
+        const open = menu.classList.toggle('open');
+        btn.classList.toggle('open', open);
+        document.body.style.overflow = open ? 'hidden' : '';
+    }
+    function closeMobileMenu() {
+        const menu = document.getElementById('mobileMenu');
+        const btn = document.getElementById('hamburger');
+        if (!menu || !btn) return;
+        menu.classList.remove('open');
+        btn.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+    // ===============================================
+
+    // ... then the rest of your inline script ...
+</script>
+
+<body>
+
+    <!-- CUSTOM CURSOR  -->
+
+    <div class="cursor" id="cur"></div>
+    <div class="cursor-ring" id="curRing"></div>
+
+    <!-- MOBILE MENU -->
+
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="Collection.html" onclick="closeMobileMenu()">Collections</a>
+        <a href="Shop.html" onclick="closeMobileMenu()">Shop</a>
+        <a href="Atelier.html" onclick="closeMobileMenu()">Atelier</a>
+        <a href="Review.html" onclick="closeMobileMenu()">Reviews</a>
+        <a href="Contact.html" onclick="closeMobileMenu()">Contact</a>
+        <div class="mobile-menu-actions">
+            <a href="#">Search</a>
+            <a href="#">Wishlist</a>
+            <button class="nav-cart" id="mobileCartBtn" style="cursor:pointer"
+                onclick="showToast('🛒 Your cart is empty — start exploring')">Cart (0)</button>
+        </div>
+    </div>
+
+    <!-- NAV -->
+
+    <nav>
+        <a href="index.html" class="nav-logo">FORM<span style="font-style:italic">E</span></a>
+        <div class="nav-center">
+            <a href="Collection.html">Collections</a>
+            <a href="Shop.html" class="active">Shop</a>
+            <a href="Atelier.html">Atelier</a>
+            <a href="Review.html">Reviews</a>
+            <a href="Contact.html">Contact</a>
+        </div>
+        <div class="nav-right">
+            <a href="#">Search</a>
+            <a href="#">Wishlist</a>
+            <button class="nav-cart" id="cartBtn" onclick="showToast('🛒 Your cart is empty — start exploring')">Cart
+                (0)</button>
+            <button class="nav-hamburger" id="hamburger" aria-label="Open menu" onclick="toggleMenu()">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Page Banner  -->
+
+    <div class="shop-hero">
+        <p class="sh-tag">All Products</p>
+        <h1 class="sh-title">The Complete<br /><em>FORME Shop</em></h1>
+        <p class="sh-desc">1,200+ considered pieces across every category. Filter by room, material, or price to find
+            exactly what your home deserves.</p>
+    </div>
+
+    <!-- Shop Tabs -->
+
+    <div class="search-bar">
+        <div class="search-input-wrap">
+            <span class="search-icon">⌕</span>
+            <input type="text" class="search-input" placeholder="Search for sofas, tables, chairs…" id="searchInput"
+                oninput="filterProducts()" />
+        </div>
+        <div class="filter-chips">
+            <button class="chip active" onclick="setChip(this,'all')">All</button>
+            <button class="chip" onclick="setChip(this,'living')">Living</button>
+            <button class="chip" onclick="setChip(this,'bedroom')">Bedroom</button>
+            <button class="chip" onclick="setChip(this,'dining')">Dining</button>
+            <button class="chip" onclick="setChip(this,'office')">Office</button>
+            <button class="chip" onclick="setChip(this,'outdoor')">Outdoor</button>
+            <button class="chip gold" onclick="setChip(this,'sale')">On Sale</button>
+        </div>
+        <span class="results-count" id="resultsCount">24 products</span>
+    </div>
+
+    <div class="shop-layout">
+        <aside class="sidebar">
+            <div class="filter-group">
+                <div class="filter-group-title">Category</div>
+                <div class="filter-option"><label><input type="checkbox" checked onchange="filterProducts()" /> Sofas &
+                        Sectionals</label><span class="filter-count">18</span></div>
+                <div class="filter-option"><label><input type="checkbox" checked onchange="filterProducts()" /> Accent
+                        Chairs</label><span class="filter-count">24</span></div>
+                <div class="filter-option"><label><input type="checkbox" checked onchange="filterProducts()" /> Coffee
+                        Tables</label><span class="filter-count">15</span></div>
+                <div class="filter-option"><label><input type="checkbox" checked onchange="filterProducts()" /> Dining
+                        Tables</label><span class="filter-count">12</span></div>
+                <div class="filter-option"><label><input type="checkbox" checked onchange="filterProducts()" /> Beds &
+                        Frames</label><span class="filter-count">16</span></div>
+                <div class="filter-option"><label><input type="checkbox" checked onchange="filterProducts()" />
+                        Storage</label><span class="filter-count">22</span></div>
+                <div class="filter-option"><label><input type="checkbox" checked onchange="filterProducts()" />
+                        Lighting</label><span class="filter-count">31</span></div>
+            </div>
+            <div class="filter-group">
+                <div class="filter-group-title">Price Range</div>
+                <div class="price-range">
+                    <input type="range" min="100" max="10000" value="10000" id="priceRange"
+                        oninput="updatePriceLabel()" />
+                    <div class="price-labels"><span>$100</span><span id="priceLabel">$10,000</span></div>
+                </div>
+            </div>
+            <div class="filter-group">
+                <div class="filter-group-title">Material</div>
+                <div class="filter-option"><label><input type="checkbox" checked onchange="filterProducts()" />
+                        Oak</label><span class="filter-count">48</span></div>
+                <div class="filter-option"><label><input type="checkbox" checked onchange="filterProducts()" />
+                        Walnut</label><span class="filter-count">22</span></div>
+                <div class="filter-option"><label><input type="checkbox" checked onchange="filterProducts()" />
+                        Linen</label><span class="filter-count">35</span></div>
+                <div class="filter-option"><label><input type="checkbox" checked onchange="filterProducts()" /> Marble &
+                        Stone</label><span class="filter-count">14</span></div>
+                <div class="filter-option"><label><input type="checkbox" checked onchange="filterProducts()" />
+                        Boucle</label><span class="filter-count">19</span></div>
+                <div class="filter-option"><label><input type="checkbox" checked onchange="filterProducts()" />
+                        Brass</label><span class="filter-count">27</span></div>
+                <div class="filter-option"><label><input type="checkbox" checked onchange="filterProducts()" />
+                        Teak</label><span class="filter-count">12</span></div>
+            </div>
+            <div class="filter-group">
+                <div class="filter-group-title">Availability</div>
+                <div class="filter-option"><label><input type="checkbox" checked onchange="filterProducts()" /> In
+                        Stock</label><span class="filter-count">186</span></div>
+                <div class="filter-option"><label><input type="checkbox" onchange="filterProducts()" />
+                        Pre-Order</label><span class="filter-count">24</span></div>
+                <div class="filter-option"><label><input type="checkbox" onchange="filterProducts()" />
+                        Bespoke</label><span class="filter-count">All</span></div>
+            </div>
+            <button class="clear-filters" onclick="showToast('Filters cleared')">✕ Clear all filters</button>
+        </aside>
+
+        <div class="products-area">
+            <div class="sort-bar">
+                <div class="sort-bar-left">Showing <strong id="countLabel">24</strong> products</div>
+                <div style="display:flex;align-items:center;gap:1.2rem">
+                    <div class="view-toggle">
+                        <button class="view-btn active" id="gridBtn" onclick="setView('grid')"
+                            title="Grid view">⊞</button>
+                        <button class="view-btn" id="listBtn" onclick="setView('list')" title="List view">☰</button>
+                    </div>
+                    <select class="sort-select" onchange="showToast('Sorting applied')">
+                        <option>Recommended</option>
+                        <option>Price: Low to High</option>
+                        <option>Price: High to Low</option>
+                        <option>Newest</option>
+                        <option>Best Selling</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="products-grid" id="productGrid"></div>
+
+            <div class="pagination">
+                <button class="page-btn" onclick="showToast('Prev page')">←</button>
+                <button class="page-btn active">1</button>
+                <button class="page-btn" onclick="showToast('Page 2')">2</button>
+                <button class="page-btn" onclick="showToast('Page 3')">3</button>
+                <button class="page-btn" onclick="showToast('Page 4')">4</button>
+                <span style="color:var(--stone);font-size:.72rem;padding:0 .5rem">…</span>
+                <button class="page-btn" onclick="showToast('Page 12')">12</button>
+                <button class="page-btn" onclick="showToast('Next page')">→</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="foot-top">
+            <div>
+                <div class="foot-logo">FORM<span>E</span></div>
+                <p class="foot-about">Luxury furniture conceived in our Florentine studio and crafted by artisans across
+                    Europe.
+                    For homes that value enduring beauty over fleeting trends.</p>
+                <div class="foot-social">
+                    <a href="#">Instagram</a>
+                    <a href="#">Pinterest</a>
+                    <a href="#">Houzz</a>
+                    <a href="#">LinkedIn</a>
+                </div>
+            </div>
+            <div class="foot-col">
+                <h5>Collections</h5>
+                <ul>
+                    <li><a href="#">Living Room</a></li>
+                    <li><a href="#">Bedroom</a></li>
+                    <li><a href="#">Dining Room</a></li>
+                    <li><a href="#">Home Office</a></li>
+                    <li><a href="#">Outdoor</a></li>
+                    <li><a href="#">New Arrivals</a></li>
+                </ul>
+            </div>
+            <div class="foot-col">
+                <h5>Company</h5>
+                <ul>
+                    <li><a href="#">Our Atelier</a></li>
+                    <li><a href="#">Craftspeople</a></li>
+                    <li><a href="#">Sustainability</a></li>
+                    <li><a href="#">Trade Programme</a></li>
+                    <li><a href="#">Press</a></li>
+                    <li><a href="#">Careers</a></li>
+                </ul>
+            </div>
+            <div class="foot-col">
+                <h5>Customer Care</h5>
+                <ul>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Delivery & Assembly</a></li>
+                    <li><a href="#">Returns</a></li>
+                    <li><a href="#">Care Guide</a></li>
+                    <li><a href="#">Warranty</a></li>
+                    <li><a href="#">Finance Options</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="foot-bottom">
+            <p class="foot-copy">© 2025 FORME Studio Ltd. All rights reserved. Registered in England & Wales.</p>
+            <div class="foot-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms & Conditions</a>
+                <a href="#">Cookie Settings</a>
+            </div>
+        </div>
+    </footer>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+        // const cur = document.getElementById('cur'), ring = document.getElementById('curRing');
+        // let mx = 0, my = 0, rx = 0, ry = 0;
+        // document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cur.style.left = mx + 'px'; cur.style.top = my + 'px' });
+        // (function a() { rx += (mx - rx) * .12; ry += (my - ry) * .12; ring.style.left = rx + 'px'; ring.style.top = ry + 'px'; requestAnimationFrame(a) })();
+        // function bindHover() { document.querySelectorAll('a,button,[onclick],input,select').forEach(el => { el.addEventListener('mouseenter', () => { cur.classList.add('hover'); ring.classList.add('hover') }); el.addEventListener('mouseleave', () => { cur.classList.remove('hover'); ring.classList.remove('hover') }); }); }
+        // bindHover();
+        // let tt;
+        // function showToast(msg) { const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(tt); tt = setTimeout(() => t.classList.remove('show'), 3200); }
+        // let cart = JSON.parse(localStorage.getItem('forme_cart') || '[]');
+        // function updateCartBtn() { document.getElementById('cartBtn').textContent = `Cart (${cart.length})`; }
+        // updateCartBtn();
+        // function addCart(name, price) { cart.push({ name, price, qty: 1 }); localStorage.setItem('forme_cart', JSON.stringify(cart)); updateCartBtn(); showToast(`✓ ${name} added to your cart`); }
+        // function wishlist(btn, name) { const on = btn.classList.toggle('active'); btn.textContent = on ? '♥' : '♡'; showToast(on ? `♥ ${name} saved to wishlist` : `Removed from wishlist`); }
+
+        const allProducts = [
+            { id: 1, img: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=500&q=80&fit=crop', badge: 'new', cat: 'Sofas & Sectionals', room: 'living', name: 'Serene Three-Seater Sofa', material: 'Natural Linen · Solid Oak Frame', price: '$3,200', raw: 3200, stars: '★★★★★' },
+            { id: 2, img: 'https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=500&q=80&fit=crop', badge: 'sale', cat: 'Accent Chairs', room: 'living', name: 'Arc Boucle Accent Chair', material: 'Ivory Boucle · Walnut Legs', price: '$1,190', raw: 1190, was: '$1,490', stars: '★★★★★' },
+            { id: 3, img: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=500&q=80&fit=crop', badge: '', cat: 'Beds & Frames', room: 'bedroom', name: 'Nest King Platform Bed', material: 'Smoked Oak · Linen Headboard', price: '$3,850', raw: 3850, stars: '★★★★★' },
+            { id: 4, img: 'https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?w=500&q=80&fit=crop', badge: 'new', cat: 'Dining Tables', room: 'dining', name: 'Oslo Extending Dining Table', material: 'White Oak · Extends 160–240cm', price: '$2,650', raw: 2650, stars: '★★★★★' },
+            { id: 5, img: 'https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=500&q=80&fit=crop', badge: 'sale', cat: 'Coffee Tables', room: 'living', name: 'Pebble Travertine Table', material: 'Ivory Travertine · Brass Base', price: '$1,490', raw: 1490, was: '$1,890', stars: '★★★★' },
+            { id: 6, img: 'https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=500&q=80&fit=crop', badge: '', cat: 'Storage & Shelving', room: 'living', name: 'Archer Open Bookcase', material: 'Natural Oak · 5 Shelves', price: '$1,280', raw: 1280, stars: '★★★★★' },
+            { id: 7, img: 'https://images.unsplash.com/photo-1598928506311-c55ded91a20c?w=500&q=80&fit=crop', badge: 'new', cat: 'Sofas & Sectionals', room: 'living', name: 'Haven L-Shape Sectional', material: 'Sage Velvet · Brushed Brass', price: '$5,800', raw: 5800, stars: '★★★★★' },
+            { id: 8, img: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=500&q=80&fit=crop', badge: '', cat: 'Side Tables', room: 'living', name: 'Orbit Marble Side Table', material: 'Verde Marble · Matte Black', price: '$890', raw: 890, stars: '★★★★' },
+            { id: 9, img: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=500&q=80&fit=crop', badge: 'new', cat: 'Beds & Frames', room: 'bedroom', name: 'Cloister Canopy Bed', material: 'Solid Walnut · Natural Linen', price: '$4,900', raw: 4900, stars: '★★★★★' },
+            { id: 10, img: 'https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=500&q=80&fit=crop', badge: '', cat: 'Nightstands', room: 'bedroom', name: 'Dune Bedside Table', material: 'White Oak · Cane Panel Door', price: '$780', raw: 780, stars: '★★★★' },
+            { id: 11, img: 'https://images.unsplash.com/photo-1558997519-83ea9252edf8?w=500&q=80&fit=crop', badge: 'sale', cat: 'Wardrobes', room: 'bedroom', name: 'Horizon Sliding Wardrobe', material: 'Matte White · Antique Brass', price: '$3,100', raw: 3100, was: '$3,600', stars: '★★★★★' },
+            { id: 14, img: 'https://images.unsplash.com/photo-1549187774-b4e9b0445b41?w=500&q=80&fit=crop', badge: '', cat: 'Dining Chairs', room: 'dining', name: 'Form Upholstered Dining Chair', material: 'Flax Linen · Beech Frame', price: '$580', raw: 580, stars: '★★★★★' },
+            { id: 15, img: 'https://images.unsplash.com/photo-1538688423619-a81d3f23454b?w=500&q=80&fit=crop', badge: 'sale', cat: 'Sideboards', room: 'dining', name: 'Archive Sideboard 180cm', material: 'Smoked Oak · Antique Brass', price: '$2,100', raw: 2100, was: '$2,500', stars: '★★★★' },
+            { id: 19, img: 'https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=500&q=80&fit=crop', badge: 'new', cat: 'Desks', room: 'office', name: 'Bureau Writing Desk 160cm', material: 'White Oak · Leather Pad', price: '$2,400', raw: 2400, stars: '★★★★★' },
+            { id: 20, img: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=500&q=80&fit=crop', badge: '', cat: 'Office Chairs', room: 'office', name: 'Spine Ergonomic Chair', material: 'Merino Wool · Polished Aluminium', price: '$1,800', raw: 1800, stars: '★★★★' },
+            { id: 24, img: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=500&q=80&fit=crop', badge: 'new', cat: 'Outdoor Sofas', room: 'outdoor', name: 'Palma Outdoor Sofa', material: 'Teak · Sunbrella Linen', price: '$4,200', raw: 4200, stars: '★★★★★' },
+            { id: 25, img: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=500&q=80&fit=crop', badge: '', cat: 'Outdoor Dining', room: 'outdoor', name: 'Terrace Dining Table 220cm', material: 'Certified Teak · Powder Steel', price: '$2,800', raw: 2800, stars: '★★★★' },
+            { id: 26, img: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=500&q=80&fit=crop', badge: 'sale', cat: 'Loungers', room: 'outdoor', name: 'Haven Sun Lounger', material: 'Teak · Sand Sunbrella', price: '$1,600', raw: 1600, was: '$1,900', stars: '★★★★★' },
+            { id: 12, img: 'https://images.unsplash.com/photo-1540518614846-7eded433c457?w=500&q=80&fit=crop', badge: 'new', cat: 'Dressers', room: 'bedroom', name: 'Strata Six-Drawer Dresser', material: 'Natural Oak · Stone Handles', price: '$2,200', raw: 2200, stars: '★★★★' },
+            { id: 16, img: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=500&q=80&fit=crop', badge: 'new', cat: 'Pendants', room: 'dining', name: 'Dome Woven Pendant Light', material: 'Natural Rattan · Brass Fitting', price: '$490', raw: 490, stars: '★★★★★' },
+            { id: 21, img: 'https://images.unsplash.com/photo-1498409785966-ab341407de6e?w=500&q=80&fit=crop', badge: 'sale', cat: 'Filing', room: 'office', name: 'Frame Filing Cabinet', material: 'Powder White · Solid Brass', price: '$890', raw: 890, was: '$1,050', stars: '★★★★' },
+            { id: 13, img: 'https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=500&q=80&fit=crop', badge: '', cat: 'Mirrors', room: 'bedroom', name: 'Arch Full-Length Mirror', material: 'Solid Oak · Bevelled Glass', price: '$1,100', raw: 1100, stars: '★★★★★' },
+            { id: 17, img: 'https://images.unsplash.com/photo-1616047006789-b7af5afb8c20?w=500&q=80&fit=crop', badge: '', cat: 'Bar Carts', room: 'dining', name: 'Atelier Bar Cart', material: 'Solid Brass · Smoked Glass', price: '$1,350', raw: 1350, stars: '★★★★' },
+            { id: 27, img: 'https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=500&q=80&fit=crop', badge: 'new', cat: 'Outdoor Chairs', room: 'outdoor', name: 'Breeze Outdoor Armchair', material: 'Aluminium · Rope Weave', price: '$980', raw: 980, stars: '★★★★★' },
+        ];
+
+        let activeChip = 'all', currentView = 'grid';
+        function setChip(btn, cat) {
+            document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+            btn.classList.add('active');
+            activeChip = cat;
+            renderProducts();
+        }
+        function setView(v) {
+            currentView = v;
+            const grid = document.getElementById('productGrid');
+            grid.classList.toggle('list-view', v === 'list');
+            document.getElementById('gridBtn').classList.toggle('active', v === 'grid');
+            document.getElementById('listBtn').classList.toggle('active', v === 'list');
+        }
+        function filterProducts() { renderProducts(); }
+        function updatePriceLabel() { const v = document.getElementById('priceRange').value; document.getElementById('priceLabel').textContent = '$' + parseInt(v).toLocaleString(); renderProducts(); }
+        function renderProducts() {
+            const q = (document.getElementById('searchInput').value || '').toLowerCase();
+            const maxPrice = parseInt(document.getElementById('priceRange').value || 10000);
+            let filtered = allProducts.filter(p => {
+                if (activeChip === 'sale' && p.badge !== 'sale') return false;
+                if (activeChip !== 'all' && activeChip !== 'sale' && p.room !== activeChip) return false;
+                if (p.raw > maxPrice) return false;
+                if (q && !p.name.toLowerCase().includes(q) && !p.cat.toLowerCase().includes(q) && !p.material.toLowerCase().includes(q)) return false;
+                return true;
+            });
+            document.getElementById('resultsCount').textContent = filtered.length + ' products';
+            document.getElementById('countLabel').textContent = filtered.length;
+            const grid = document.getElementById('productGrid');
+            grid.innerHTML = filtered.map(p => `
+    <div class="product-card">
+      <div class="p-img">
+        <img src="${p.img}" alt="${p.name}" loading="lazy"/>
+        ${p.badge ? `<span class="p-badge ${p.badge}">${p.badge === 'new' ? 'New' : 'Sale'}</span>` : ''}
+        <button class="p-wish" onclick="wishlist(this,'${p.name}')">♡</button>
+      </div>
+      <div class="p-body">
+        <div class="p-cat">${p.cat}</div>
+        <div class="p-name" onclick="window.location='product.html?id=${p.id}'">${p.name}</div>
+        <div class="p-material">${p.material}</div>
+        <div class="p-stars">${p.stars}</div>
+        <div class="p-foot">
+          <div class="p-price">${p.was ? `<s>${p.was}</s>` : ''}${p.price}</div>
+          <button class="p-add" onclick="addCart('${p.name}',${p.raw})">Add to Cart</button>
+        </div>
+      </div>
+    </div>`).join('');
+            setTimeout(() => {
+                document.querySelectorAll('.product-card').forEach((c, i) => { setTimeout(() => c.classList.add('visible'), i * 60); });
+                bindHover();
+            }, 30);
+        }
+        renderProducts();
+    </script>
+</body>
+<script src="script.js"></script>
+
+</html>

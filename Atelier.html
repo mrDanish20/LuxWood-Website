@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Atelier — FORME</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Jost:wght@200;300;400;500&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<script>
+    // ADD THIS AT THE VERY TOP OF YOUR INLINE SCRIPT
+    // ===============================================
+    function toggleMenu() {
+        const menu = document.getElementById('mobileMenu');
+        const btn = document.getElementById('hamburger');
+        if (!menu || !btn) return;
+        const open = menu.classList.toggle('open');
+        btn.classList.toggle('open', open);
+        document.body.style.overflow = open ? 'hidden' : '';
+    }
+    function closeMobileMenu() {
+        const menu = document.getElementById('mobileMenu');
+        const btn = document.getElementById('hamburger');
+        if (!menu || !btn) return;
+        menu.classList.remove('open');
+        btn.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+    // ===============================================
+
+    // ... then the rest of your inline script ...
+</script>
+<style>
+    .s-title {
+        font-family: var(--serif);
+        font-size: clamp(1.9rem, 3.5vw, 3.2rem);
+        font-weight: 400;
+        line-height: 1.1;
+        color: var(--ink)
+    }
+
+    .s-title em {
+        font-style: italic
+    }
+
+    /* ═══════════════════════════════════════
+   RESPONSIVE PATCH (PHILOSOPHY + CRAFT + GALLERY)
+   DO NOT EDIT ORIGINAL CODE ABOVE
+═══════════════════════════════════════ */
+
+    /* ===== LARGE TABLET ===== */
+    @media (max-width: 1200px) {
+
+        .steps-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .material-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .gallery-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    /* ===== TABLET ===== */
+    @media (max-width: 1024px) {
+
+        .philosophy-split {
+            grid-template-columns: 1fr;
+        }
+
+        .philo-content {
+            padding: 4rem 2.5rem;
+        }
+
+        .craft-section {
+            padding: 4rem 2rem;
+        }
+
+        .maker-spotlight {
+            grid-template-columns: 1fr;
+        }
+
+        .maker-quote {
+            padding: 3rem 2.5rem;
+        }
+
+        .material-section {
+            padding: 4rem 2rem;
+        }
+
+        .gallery-section {
+            padding: 4rem 2rem;
+        }
+    }
+
+    /* ===== SMALL TABLET ===== */
+    @media (max-width: 768px) {
+
+        .philo-title {
+            font-size: 2rem;
+        }
+
+        .philo-content {
+            padding: 3rem 1.5rem;
+        }
+
+        .steps-grid {
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .step-card {
+            padding: 1.5rem 1rem;
+        }
+
+        .maker-quote blockquote {
+            font-size: 1.2rem;
+        }
+
+        .material-grid {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .gallery-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .promise-bar {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .pb-item {
+            padding: 1.5rem;
+        }
+
+        .cta-section {
+            padding: 4rem 2rem;
+        }
+    }
+
+    /* ===== MOBILE ===== */
+    @media (max-width: 600px) {
+
+        .philo-title {
+            font-size: 1.8rem;
+        }
+
+        .philo-desc {
+            font-size: .8rem;
+        }
+
+        .craft-section {
+            padding: 3rem 1rem;
+        }
+
+        .steps-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .step-num {
+            font-size: 1.6rem;
+        }
+
+        .material-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .maker-quote {
+            padding: 2.5rem 1.5rem;
+        }
+
+        .maker-quote blockquote {
+            font-size: 1.1rem;
+        }
+
+        .cta-section {
+            padding: 3rem 1rem;
+        }
+
+        .cta-section p {
+            font-size: .8rem;
+        }
+    }
+
+    /* ===== SMALL MOBILE ===== */
+    @media (max-width: 420px) {
+
+        .philo-content {
+            padding: 2rem 1rem;
+        }
+
+        .philo-title {
+            font-size: 1.6rem;
+        }
+
+        .philo-tag {
+            font-size: .55rem;
+        }
+
+        .craft-header .s-title {
+            font-size: 1.6rem;
+        }
+
+        .step-title {
+            font-size: .8rem;
+        }
+
+        .step-desc {
+            font-size: .65rem;
+        }
+
+        .gallery-label {
+            font-size: .6rem;
+        }
+    }
+
+    /* ===== EXTRA SMALL ===== */
+    @media (max-width: 360px) {
+
+        .philo-title {
+            font-size: 1.5rem;
+        }
+
+        .pb-item {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .pb-icon {
+            margin: 0 auto;
+        }
+    }
+</style>
+
+<body>
+
+
+
+    <!-- CUSTOM CURSOR  -->
+
+    <div class="cursor" id="cur"></div>
+    <div class="cursor-ring" id="curRing"></div>
+
+    <!-- MOBILE MENU -->
+
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="Collection.html" onclick="closeMobileMenu()">Collections</a>
+        <a href="Shop.html" onclick="closeMobileMenu()">Shop</a>
+        <a href="Atelier.html" onclick="closeMobileMenu()">Atelier</a>
+        <a href="Review.html" onclick="closeMobileMenu()">Reviews</a>
+        <a href="Contact.html" onclick="closeMobileMenu()">Contact</a>
+        <div class="mobile-menu-actions">
+            <a href="#">Search</a>
+            <a href="#">Wishlist</a>
+            <button class="nav-cart" id="mobileCartBtn" style="cursor:pointer"
+                onclick="showToast('🛒 Your cart is empty — start exploring')">Cart (0)</button>
+        </div>
+    </div>
+
+    <!-- NAV -->
+
+    <nav>
+        <a href="index.html" class="nav-logo">FORM<span style="font-style:italic">E</span></a>
+        <div class="nav-center">
+            <a href="Collection.html">Collections</a>
+            <a href="Shop.html">Shop</a>
+            <a href="Atelier.html" class="active">Atelier</a>
+            <a href="Review.html">Reviews</a>
+            <a href="Contact.html">Contact</a>
+        </div>
+        <div class="nav-right">
+            <a href="#">Search</a>
+            <a href="#">Wishlist</a>
+            <button class="nav-cart" id="cartBtn" onclick="showToast('🛒 Your cart is empty — start exploring')">Cart
+                (0)</button>
+            <button class="nav-hamburger" id="hamburger" aria-label="Open menu" onclick="toggleMenu()">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Page Banner -->
+
+
+    <div class="page-hero">
+        <p class="ph-tag">The Forme Atelier</p>
+        <h1 class="ph-title">Objects Made <em>by Hand,</em><br />Meant to Last</h1>
+        <p class="ph-sub">Founded on one conviction: that the objects you live with should be worthy of the life you're
+            living. Every joint, finish, and proportion is deliberate. Nothing is manufactured in haste.</p>
+    </div>
+
+    <!-- PHILOSOPHY SPLIT -->
+    <div class="philosophy-split">
+        <div class="philo-img">
+            <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1000&q=85&fit=crop"
+                alt="Artisan workshop" loading="lazy" />
+        </div>
+        <div class="philo-content">
+            <p class="philo-tag">Design Philosophy</p>
+            <h2 class="philo-title">Slowness, <em>Honesty,</em> Proportion</h2>
+            <p class="philo-desc">We reject the tyranny of seasonal trends. A FORME piece is designed for a lifetime —
+                considered details that reveal themselves over years, not seconds. Every edge softened by hand, every
+                surface
+                chosen for its patina, not its perfection.</p>
+            <p class="philo-desc">Our studio works closely with master carpenters, woodturners, and textile ateliers
+                across
+                Italy, Sweden and Japan. The result is functional sculpture that improves with age, embracing wear as
+                narrative.
+            </p>
+            <div style="margin-top:.5rem"><span style="font-size:.6rem;letter-spacing:.2em;">✦ slow design manifesto
+                    ✦</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- CRAFT STEPS SECTION -->
+    <section class="craft-section">
+        <div class="craft-header">
+            <p class="s-tag">The Making</p>
+            <h2 class="s-title">From Sketch to <em>Doorstep</em></h2>
+            <p>Every FORME piece follows an unhurried path — drawn, refined, carved, finished, and finally delivered to
+                your
+                home.</p>
+        </div>
+        <div class="steps-grid">
+            <div class="step-card">
+                <div class="step-num">01</div>
+                <div class="step-title">Sketch & Study</div>
+                <div class="step-desc">Months of proportion studies, material sampling, and hand-drawn iterations before
+                    any
+                    digital model.</div>
+            </div>
+            <div class="step-card">
+                <div class="step-num">02</div>
+                <div class="step-title">Material Selection</div>
+                <div class="step-desc">FSC-certified European oak, walnut, Italian marble — each board hand-selected for
+                    grain
+                    and character.</div>
+            </div>
+            <div class="step-card">
+                <div class="step-num">03</div>
+                <div class="step-title">Joinery & Carving</div>
+                <div class="step-desc">Traditional mortise-and-tenon, dovetails, and hand-chiseled details by
+                    third-generation
+                    artisans.</div>
+            </div>
+            <div class="step-card">
+                <div class="step-num">04</div>
+                <div class="step-title">Finishing & Patina</div>
+                <div class="step-desc">Natural oils, waxes, and lime washes. No toxic lacquers — surfaces that breathe
+                    and age
+                    gracefully.</div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- MAKER SPOTLIGHT -->
+    <div class="maker-spotlight">
+        <div class="maker-quote">
+            <blockquote>Wood is never silent. If you listen, it tells you where it wants to bend, where to carve. My
+                father
+                taught me that, and I will teach the next generation.</blockquote>
+            <div class="maker-name">— Enrico Balzani, Master Cabinetmaker, 4th generation</div>
+            <p style="font-size:.7rem; margin-top:1rem; opacity:.6;">Bassano del Grappa, Italy | FORME Atelier since
+                2012</p>
+        </div>
+        <div class="maker-img">
+            <img src="https://images.unsplash.com/photo-1581092335871-1d51a27f8bcb?w=1000&q=85&fit=crop"
+                alt="Master artisan at workbench" loading="lazy" />
+        </div>
+    </div>
+
+    <!-- MATERIAL SHOWCASE -->
+    <section class="material-section">
+        <div class="material-header">
+            <p class="s-tag">Raw & Noble</p>
+            <h2 class="s-title">Materials <em>That Endure</em></h2>
+        </div>
+        <div class="material-grid">
+            <div class="mat-card">
+                <div class="mat-icon">🌳</div>
+                <div class="mat-title">Solid European Oak</div>
+                <div class="mat-desc">Sustainably managed forests, air-dried 18+ months, hand-planed.</div>
+            </div>
+            <div class="mat-card">
+                <div class="mat-icon">🪨</div>
+                <div class="mat-title">Travertine & Marble</div>
+                <div class="mat-desc">Tuscan quarries; each piece reveals unique fossil markings.</div>
+            </div>
+            <div class="mat-card">
+                <div class="mat-icon">🧵</div>
+                <div class="mat-title">Linens & Bouclés</div>
+                <div class="mat-desc">Woven by heritage mills in Belgium and Ireland, undyed or plant-based.</div>
+            </div>
+            <div class="mat-card">
+                <div class="mat-icon">✨</div>
+                <div class="mat-title">Brass & Bronze</div>
+                <div class="mat-desc">Hand-cast and polished — natural patina, never plated.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ATELIER GALLERY -->
+    <section class="gallery-section">
+        <div class="gallery-header">
+            <p class="s-tag">Inside the Workshop</p>
+            <h2 class="s-title">Spaces of <em>Creation</em></h2>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-card"><img
+                    src="https://images.unsplash.com/photo-1622372738946-62e02505feb3?w=800&q=80&fit=crop"
+                    alt="Workshop tools" loading="lazy" />
+                <div class="gallery-overlay">
+                    <div class="gallery-label">Florence Atelier</div>
+                </div>
+            </div>
+            <div class="gallery-card"><img
+                    src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800&q=80&fit=crop"
+                    alt="Craftsman carving" loading="lazy" />
+                <div class="gallery-overlay">
+                    <div class="gallery-label">Hand Carving Detail</div>
+                </div>
+            </div>
+            <div class="gallery-card"><img
+                    src="https://images.unsplash.com/photo-1503177119275-0aa32b3a9368?w=800&q=80&fit=crop"
+                    alt="Wood selection" loading="lazy" />
+                <div class="gallery-overlay">
+                    <div class="gallery-label">Timber Library</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROMISE BAR (exact match to collections.html) -->
+    <div class="promise-bar">
+        <div class="pb-item">
+            <div class="pb-icon">🚚</div>
+            <div>
+                <div class="pb-title">White Glove Delivery</div>
+                <div class="pb-desc">Delivered, assembled, and placed.</div>
+            </div>
+        </div>
+        <div class="pb-item">
+            <div class="pb-icon">🌿</div>
+            <div>
+                <div class="pb-title">Sustainably Sourced</div>
+                <div class="pb-desc">100% FSC-certified timber.</div>
+            </div>
+        </div>
+        <div class="pb-item">
+            <div class="pb-icon">🔧</div>
+            <div>
+                <div class="pb-title">Lifetime Warranty</div>
+                <div class="pb-desc">Every structural element, forever.</div>
+            </div>
+        </div>
+        <div class="pb-item">
+            <div class="pb-icon">↩</div>
+            <div>
+                <div class="pb-title">30-Day Returns</div>
+                <div class="pb-desc">Full free collection and refund.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA SECTION -->
+    <section class="cta-section">
+        <h2 class="s-title">Visit Our <em>Florentine Studio</em></h2>
+        <p>By appointment only — experience the archive, touch materials, and collaborate on bespoke commissions.</p>
+        <button class="btn-outline-lt"
+            onclick="showToast('✧ Reserve your studio appointment — we will contact you within 24h ✧')">Request an
+            Atelier
+            Visit</button>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="foot-top">
+            <div>
+                <div class="foot-logo">FORM<span>E</span></div>
+                <p class="foot-about">Luxury furniture conceived in our Florentine studio and crafted by artisans across
+                    Europe.
+                    For homes that value enduring beauty over fleeting trends.</p>
+                <div class="foot-social">
+                    <a href="#">Instagram</a>
+                    <a href="#">Pinterest</a>
+                    <a href="#">Houzz</a>
+                    <a href="#">LinkedIn</a>
+                </div>
+            </div>
+            <div class="foot-col">
+                <h5>Collections</h5>
+                <ul>
+                    <li><a href="#">Living Room</a></li>
+                    <li><a href="#">Bedroom</a></li>
+                    <li><a href="#">Dining Room</a></li>
+                    <li><a href="#">Home Office</a></li>
+                    <li><a href="#">Outdoor</a></li>
+                    <li><a href="#">New Arrivals</a></li>
+                </ul>
+            </div>
+            <div class="foot-col">
+                <h5>Company</h5>
+                <ul>
+                    <li><a href="#">Our Atelier</a></li>
+                    <li><a href="#">Craftspeople</a></li>
+                    <li><a href="#">Sustainability</a></li>
+                    <li><a href="#">Trade Programme</a></li>
+                    <li><a href="#">Press</a></li>
+                    <li><a href="#">Careers</a></li>
+                </ul>
+            </div>
+            <div class="foot-col">
+                <h5>Customer Care</h5>
+                <ul>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Delivery & Assembly</a></li>
+                    <li><a href="#">Returns</a></li>
+                    <li><a href="#">Care Guide</a></li>
+                    <li><a href="#">Warranty</a></li>
+                    <li><a href="#">Finance Options</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="foot-bottom">
+            <p class="foot-copy">© 2025 FORME Studio Ltd. All rights reserved. Registered in England & Wales.</p>
+            <div class="foot-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms & Conditions</a>
+                <a href="#">Cookie Settings</a>
+            </div>
+        </div>
+    </footer>
+
+    <div class="toast" id="toast"></div>
+</body>
+
+<script>
+    // const cur = document.getElementById('cur'), ring = document.getElementById('curRing');
+    // let mx = 0, my = 0, rx = 0, ry = 0;
+    // document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cur.style.left = mx + 'px'; cur.style.top = my + 'px' });
+    // (function a() { rx += (mx - rx) * .12; ry += (my - ry) * .12; ring.style.left = rx + 'px'; ring.style.top = ry + 'px'; requestAnimationFrame(a) })();
+    // function bindHover() { document.querySelectorAll('a,button,[onclick]').forEach(el => { el.addEventListener('mouseenter', () => { cur.classList.add('hover'); ring.classList.add('hover') }); el.addEventListener('mouseleave', () => { cur.classList.remove('hover'); ring.classList.remove('hover') }); }); }
+    // bindHover();
+    // let tt;
+    // function showToast(msg) { const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(tt); tt = setTimeout(() => t.classList.remove('show'), 3200); }
+    // let cart = JSON.parse(localStorage.getItem('forme_cart') || '[]');
+    // function updateCartBtn() { document.getElementById('cartBtn').textContent = `Cart (${cart.length})`; }
+    // updateCartBtn();
+    function addCart(name, price) { cart.push({ name, price, qty: 1 }); localStorage.setItem('forme_cart', JSON.stringify(cart)); updateCartBtn(); showToast(`✓ ${name} added to your cart`); }
+    function wishlist(btn, name) { const on = btn.classList.toggle('active'); btn.textContent = on ? '♥' : '♡'; showToast(on ? `♥ ${name} saved to wishlist` : `Removed from wishlist`); }
+    const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'translateY(0)'; observer.unobserve(e.target) } }) }, { threshold: 0.1 });
+    document.querySelectorAll('.step-card,.mat-card,.gallery-card').forEach(el => { el.style.opacity = '0'; el.style.transform = 'translateY(20px)'; el.style.transition = 'opacity .5s ease, transform .5s ease'; observer.observe(el) });
+</script>
+
+</html>
+<script src="script.js"></script>

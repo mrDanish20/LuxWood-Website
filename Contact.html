@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact — FORME</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Jost:wght@200;300;400;500&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<script>
+    // ADD THIS AT THE VERY TOP OF YOUR INLINE SCRIPT
+    // ===============================================
+    function toggleMenu() {
+        const menu = document.getElementById('mobileMenu');
+        const btn = document.getElementById('hamburger');
+        if (!menu || !btn) return;
+        const open = menu.classList.toggle('open');
+        btn.classList.toggle('open', open);
+        document.body.style.overflow = open ? 'hidden' : '';
+    }
+    function closeMobileMenu() {
+        const menu = document.getElementById('mobileMenu');
+        const btn = document.getElementById('hamburger');
+        if (!menu || !btn) return;
+        menu.classList.remove('open');
+        btn.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+    // ===============================================
+
+    // ... then the rest of your inline script ...
+</script>
+<style>
+    .s-title {
+    font-family: var(--serif);
+    font-size: clamp(1.9rem, 3.5vw, 3.2rem);
+    font-weight: 400;
+    line-height: 1.1;
+    color: var(--ink)
+}
+
+.s-title em {
+    font-style: italic
+}
+</style>
+
+<body>
+
+
+    <!-- CUSTOM CURSOR  -->
+
+    <div class="cursor" id="cur"></div>
+    <div class="cursor-ring" id="curRing"></div>
+
+    <!-- MOBILE MENU -->
+
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="Collection.html" onclick="closeMobileMenu()">Collections</a>
+        <a href="Shop.html" onclick="closeMobileMenu()">Shop</a>
+        <a href="Atelier.html" onclick="closeMobileMenu()">Atelier</a>
+        <a href="Review.html" onclick="closeMobileMenu()">Reviews</a>
+        <a href="Contact.html" onclick="closeMobileMenu()">Contact</a>
+        <div class="mobile-menu-actions">
+            <a href="#">Search</a>
+            <a href="#">Wishlist</a>
+            <button class="nav-cart" id="mobileCartBtn" style="cursor:pointer"
+                onclick="showToast('🛒 Your cart is empty — start exploring')">Cart (0)</button>
+        </div>
+    </div>
+
+    <!-- NAV -->
+
+    <nav>
+        <a href="index.html" class="nav-logo">FORM<span style="font-style:italic">E</span></a>
+        <div class="nav-center">
+            <a href="Collection.html">Collections</a>
+            <a href="Shop.html">Shop</a>
+            <a href="Atelier.html">Atelier</a>
+            <a href="Review.html">Reviews</a>
+            <a href="Contact.html" class="active">Contact</a>
+        </div>
+        <div class="nav-right">
+            <a href="#">Search</a>
+            <a href="#">Wishlist</a>
+            <button class="nav-cart" id="cartBtn" onclick="showToast('🛒 Your cart is empty — start exploring')">Cart
+                (0)</button>
+            <button class="nav-hamburger" id="hamburger" aria-label="Open menu" onclick="toggleMenu()">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Page hero -->
+
+    <div class="page-hero">
+        <p class="ph-tag">Get in Touch</p>
+        <h1 class="ph-title">We're Here to <em>Help</em></h1>
+        <p class="ph-sub">Whether you have questions about a product, need design advice, or want to discuss a bespoke
+            commission — our team is ready to assist you.</p>
+    </div>
+
+    <div class="contact-grid">
+        <div class="contact-info reveal">
+            <p class="s-tag">Contact Information</p>
+            <h2 class="s-title">Studio & <em>Support</em></h2>
+            <div class="info-detail">
+                <h4>Florence Studio (Headquarters)</h4>
+                <p>Via dei Serragli 108R, 50124</p>
+                <p>Florence, Italy</p>
+            </div>
+            <div class="info-detail">
+                <h4>Email Us</h4>
+                <p><a href="mailto:hello@forme.com">hello@forme.com</a></p>
+                <p><a href="mailto:support@forme.com">support@forme.com</a> — for order inquiries</p>
+            </div>
+            <div class="info-detail">
+                <h4>Call Us</h4>
+                <p>+39 055 123 4567</p>
+                <p>Monday — Friday: 9:00 – 18:00 CET</p>
+            </div>
+            <div class="social-links">
+                <a href="#">Instagram</a>
+                <a href="#">Pinterest</a>
+                <a href="#">Houzz</a>
+                <a href="#">LinkedIn</a>
+            </div>
+        </div>
+
+        <div class="store-locations reveal">
+            <h4>✦ Showrooms & Ateliers</h4>
+            <div class="location-card">
+                <div class="location-name">Florence — The Atelier</div>
+                <div class="location-addr">Via dei Serragli 108R, Florence<br />By appointment only</div>
+                <div class="location-hours">Tuesday – Saturday: 10am – 6pm</div>
+                <a href="#" class="location-link" onclick="showToast('Appointment booking coming soon')">Book a visit
+                    →</a>
+            </div>
+            <div class="location-card">
+                <div class="location-name">London — Showroom</div>
+                <div class="location-addr">58 Pimlico Road, SW1W 8LP<br />London, United Kingdom</div>
+                <div class="location-hours">Monday – Saturday: 10am – 7pm</div>
+                <a href="#" class="location-link" onclick="showToast('Directions sent to your email')">Get directions
+                    →</a>
+            </div>
+            <div class="location-card">
+                <div class="location-name">New York — Design Gallery</div>
+                <div class="location-addr">200 Lexington Avenue, Suite 901<br />NYC 10016, United States</div>
+                <div class="location-hours">Monday – Friday: 11am – 6pm</div>
+                <a href="#" class="location-link" onclick="showToast('Directions sent to your email')">Get directions
+                    →</a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="map-section">
+        <div class="map-container">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2880.1395027017297!2d11.24680031550178!3d43.76956897911748!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132a56afaf53e1ed%3A0x4a8c6d0f8f9e6b0!2sVia%20dei%20Serragli%2C%20108R%2C%2050124%20Firenze%20FI%2C%20Italy!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus"
+                allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+    </div>
+
+    <div class="form-section" id="contactForm">
+        <div class="form-inner reveal">
+            <div class="form-header">
+                <p class="s-tag">Send a Message</p>
+                <h2 class="s-title">We'd Love to <em>Hear From You</em></h2>
+                <p>For general inquiries, product questions, or trade partnership — fill out the form below and we'll
+                    respond within 24 hours.</p>
+            </div>
+            <div class="contact-form">
+                <div class="form-row">
+                    <input type="text" class="form-input" placeholder="Your full name" id="contactName">
+                    <input type="email" class="form-input" placeholder="Email address" id="contactEmail">
+                </div>
+                <div class="form-row">
+                    <input type="text" class="form-input" placeholder="Phone number (optional)" id="contactPhone">
+                    <input type="text" class="form-input" placeholder="Subject" id="contactSubject">
+                </div>
+                <textarea class="form-textarea" placeholder="Your message..." id="contactMessage"></textarea>
+                <button class="btn-submit" onclick="submitContact()">Send Message →</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="faq-section">
+        <div class="faq-inner reveal">
+            <div class="faq-header">
+                <p class="s-tag">Common Questions</p>
+                <h2 class="s-title">Frequently <em>Asked</em></h2>
+            </div>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question">How long does delivery take?</div>
+                    <div class="faq-answer">White Glove delivery typically takes 10-14 business days for in-stock items.
+                        Custom pieces require 8-12 weeks. You'll receive tracking updates at every stage.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Do you ship internationally?</div>
+                    <div class="faq-answer">Yes, we ship to over 32 countries across Europe, North America, Asia, and
+                        Australia. Delivery costs are calculated at checkout based on your location.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Can I return or exchange an item?</div>
+                    <div class="faq-answer">Absolutely. We offer free 30-day returns. Our team will arrange collection
+                        and a full refund once the piece is returned in original condition.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Do you offer trade or contract pricing?</div>
+                    <div class="faq-answer">Yes, interior designers, architects, and trade professionals receive
+                        exclusive pricing. Please email trade@forme.com with your credentials.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Is it possible to customize a piece?</div>
+                    <div class="faq-answer">Many of our pieces can be customized in dimensions, wood finish, and
+                        upholstery. Our atelier team will work directly with you on bespoke commissions.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">What is your warranty policy?</div>
+                    <div class="faq-answer">Every FORME piece comes with a Lifetime Structural Warranty covering all
+                        joinery, frames, and mechanisms. Upholstery and finishes are covered for 5 years.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="promise-bar">
+        <div class="pb-item">
+            <div class="pb-icon">🚚</div>
+            <div>
+                <div class="pb-title">White Glove Delivery</div>
+                <div class="pb-desc">Delivered, assembled, and placed.</div>
+            </div>
+        </div>
+        <div class="pb-item">
+            <div class="pb-icon">🌿</div>
+            <div>
+                <div class="pb-title">Sustainably Sourced</div>
+                <div class="pb-desc">100% FSC-certified timber.</div>
+            </div>
+        </div>
+        <div class="pb-item">
+            <div class="pb-icon">🔧</div>
+            <div>
+                <div class="pb-title">Lifetime Warranty</div>
+                <div class="pb-desc">Every structural element, forever.</div>
+            </div>
+        </div>
+        <div class="pb-item">
+            <div class="pb-icon">↩</div>
+            <div>
+                <div class="pb-title">30-Day Returns</div>
+                <div class="pb-desc">Full free collection and refund.</div>
+            </div>
+        </div>
+    </div>
+
+       <!-- FOOTER -->
+    <footer>
+        <div class="foot-top">
+            <div>
+                <div class="foot-logo">FORM<span>E</span></div>
+                <p class="foot-about">Luxury furniture conceived in our Florentine studio and crafted by artisans across
+                    Europe.
+                    For homes that value enduring beauty over fleeting trends.</p>
+                <div class="foot-social">
+                    <a href="#">Instagram</a>
+                    <a href="#">Pinterest</a>
+                    <a href="#">Houzz</a>
+                    <a href="#">LinkedIn</a>
+                </div>
+            </div>
+            <div class="foot-col">
+                <h5>Collections</h5>
+                <ul>
+                    <li><a href="#">Living Room</a></li>
+                    <li><a href="#">Bedroom</a></li>
+                    <li><a href="#">Dining Room</a></li>
+                    <li><a href="#">Home Office</a></li>
+                    <li><a href="#">Outdoor</a></li>
+                    <li><a href="#">New Arrivals</a></li>
+                </ul>
+            </div>
+            <div class="foot-col">
+                <h5>Company</h5>
+                <ul>
+                    <li><a href="#">Our Atelier</a></li>
+                    <li><a href="#">Craftspeople</a></li>
+                    <li><a href="#">Sustainability</a></li>
+                    <li><a href="#">Trade Programme</a></li>
+                    <li><a href="#">Press</a></li>
+                    <li><a href="#">Careers</a></li>
+                </ul>
+            </div>
+            <div class="foot-col">
+                <h5>Customer Care</h5>
+                <ul>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Delivery & Assembly</a></li>
+                    <li><a href="#">Returns</a></li>
+                    <li><a href="#">Care Guide</a></li>
+                    <li><a href="#">Warranty</a></li>
+                    <li><a href="#">Finance Options</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="foot-bottom">
+            <p class="foot-copy">© 2025 FORME Studio Ltd. All rights reserved. Registered in England & Wales.</p>
+            <div class="foot-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms & Conditions</a>
+                <a href="#">Cookie Settings</a>
+            </div>
+        </div>
+    </footer>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+   
+
+    // Contact form submission
+    function submitContact() {
+      const name = document.getElementById('contactName').value.trim();
+      const email = document.getElementById('contactEmail').value.trim();
+      const subject = document.getElementById('contactSubject').value.trim();
+      const message = document.getElementById('contactMessage').value.trim();
+
+      if (!name) { showToast('Please enter your name'); return }
+      if (!email) { showToast('Please enter your email'); return }
+      if (!email.includes('@')) { showToast('Please enter a valid email address'); return }
+      if (!subject) { showToast('Please enter a subject'); return }
+      if (!message) { showToast('Please enter your message'); return }
+
+      showToast(`✓ Thank you, ${name.split(' ')[0]}! We'll respond within 24 hours.`);
+
+      document.getElementById('contactName').value = '';
+      document.getElementById('contactEmail').value = '';
+      document.getElementById('contactPhone').value = '';
+      document.getElementById('contactSubject').value = '';
+      document.getElementById('contactMessage').value = '';
+    }
+
+    // Intersection Observer for reveals
+    const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('up'); observer.unobserve(e.target) } }) }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+
+
+</html>
+<script src="script.js"></script>

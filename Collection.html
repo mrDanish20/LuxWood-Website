@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Collections — FORME</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Jost:wght@200;300;400;500&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<script>
+    // ADD THIS AT THE VERY TOP OF YOUR INLINE SCRIPT
+    // ===============================================
+    function toggleMenu() {
+        const menu = document.getElementById('mobileMenu');
+        const btn = document.getElementById('hamburger');
+        if (!menu || !btn) return;
+        const open = menu.classList.toggle('open');
+        btn.classList.toggle('open', open);
+        document.body.style.overflow = open ? 'hidden' : '';
+    }
+    function closeMobileMenu() {
+        const menu = document.getElementById('mobileMenu');
+        const btn = document.getElementById('hamburger');
+        if (!menu || !btn) return;
+        menu.classList.remove('open');
+        btn.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+    // ===============================================
+
+    // ... then the rest of your inline script ...
+</script>
+
+<body>
+
+    <!-- CUSTOM CURSOR  -->
+
+    <div class="cursor" id="cur"></div>
+    <div class="cursor-ring" id="curRing"></div>
+
+    <!-- MOBILE MENU -->
+
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="Collection.html" onclick="closeMobileMenu()">Collections</a>
+        <a href="Shop.html" onclick="closeMobileMenu()">Shop</a>
+        <a href="Atelier.html" onclick="closeMobileMenu()">Atelier</a>
+        <a href="Review.html" onclick="closeMobileMenu()">Reviews</a>
+        <a href="Contact.html" onclick="closeMobileMenu()">Contact</a>
+        <div class="mobile-menu-actions">
+            <a href="#">Search</a>
+            <a href="#">Wishlist</a>
+            <button class="nav-cart" id="mobileCartBtn" style="cursor:pointer"
+                onclick="showToast('🛒 Your cart is empty — start exploring')">Cart (0)</button>
+        </div>
+    </div>
+
+    <!-- NAV -->
+
+    <nav>
+        <a href="index.html" class="nav-logo">FORM<span style="font-style:italic">E</span></a>
+        <div class="nav-center">
+            <a href="Collection.html" class="active">Collections</a>
+            <a href="Shop.html">Shop</a>
+            <a href="Atelier.html">Atelier</a>
+            <a href="Review.html">Reviews</a>
+            <a href="Contact.html">Contact</a>
+        </div>
+        <div class="nav-right">
+            <a href="#">Search</a>
+            <a href="#">Wishlist</a>
+            <button class="nav-cart" id="cartBtn" onclick="showToast('🛒 Your cart is empty — start exploring')">Cart
+                (0)</button>
+            <button class="nav-hamburger" id="hamburger" aria-label="Open menu" onclick="toggleMenu()">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Page Banner -->
+
+    <div class="page-hero">
+        <p class="ph-tag">FORME Collections</p>
+        <h1 class="ph-title">Every Room,<br /><em>Considered</em></h1>
+        <p class="ph-sub">Five distinct collections for every room in the home. Each piece designed in our Florentine
+            atelier and crafted to endure.</p>
+    </div>
+
+    <!-- Room Tabs -->
+
+
+    <div class="room-tabs" id="roomTabs">
+        <button class="room-tab active" data-room="living" onclick="switchRoom('living',this)">Living Room</button>
+        <button class="room-tab" data-room="bedroom" onclick="switchRoom('bedroom',this)">Bedroom</button>
+        <button class="room-tab" data-room="dining" onclick="switchRoom('dining',this)">Dining Room</button>
+        <button class="room-tab" data-room="office" onclick="switchRoom('office',this)">Home Office</button>
+        <button class="room-tab" data-room="outdoor" onclick="switchRoom('outdoor',this)">Outdoor</button>
+    </div>
+
+    <div id="roomContent"></div>
+
+    <div class="look-section">
+        <div style="display:flex;justify-content:space-between;align-items:flex-end">
+            <div>
+                <p class="s-tag">Shop the Look</p>
+                <h2 class="s-title">Curated <em>Room Sets</em></h2>
+            </div>
+            <a href="shop.html" class="cat-more">View All →</a>
+        </div>
+        <div class="look-grid">
+            <div class="look-card">
+                <img src="https://cdn.home-designing.com/wp-content/uploads/2022/02/rectangle-coffee-table-1-1024x726.jpg"
+                    alt="Full living room" loading="lazy" />
+                <div class="look-card-body">
+                    <div class="look-name">The Serene Living Room</div>
+                    <div class="look-price">Complete set from $8,400</div>
+                    <div class="look-cta">Shop the look →</div>
+                </div>
+            </div>
+            <div class="look-card">
+                <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=700&q=80&fit=crop"
+                    alt="Bedroom set" loading="lazy" />
+                <div class="look-card-body">
+                    <div class="look-name">The Nordic Bedroom</div>
+                    <div class="look-price">Complete set from $6,200</div>
+                    <div class="look-cta">Shop the look →</div>
+                </div>
+            </div>
+            <div class="look-card">
+                <img src="https://images.unsplash.com/photo-1617806118233-18e1de247200?w=700&q=80&fit=crop"
+                    alt="Dining room set" loading="lazy" />
+                <div class="look-card-body">
+                    <div class="look-name">The Oslo Dining Room</div>
+                    <div class="look-price">Complete set from $5,800</div>
+                    <div class="look-cta">Shop the look →</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="promise-bar">
+        <div class="pb-item">
+            <div class="pb-icon">🚚</div>
+            <div>
+                <div class="pb-title">White Glove Delivery</div>
+                <div class="pb-desc">Delivered, assembled, and placed.</div>
+            </div>
+        </div>
+        <div class="pb-item">
+            <div class="pb-icon">🌿</div>
+            <div>
+                <div class="pb-title">Sustainably Sourced</div>
+                <div class="pb-desc">100% FSC-certified timber.</div>
+            </div>
+        </div>
+        <div class="pb-item">
+            <div class="pb-icon">🔧</div>
+            <div>
+                <div class="pb-title">Lifetime Warranty</div>
+                <div class="pb-desc">Every structural element, forever.</div>
+            </div>
+        </div>
+        <div class="pb-item">
+            <div class="pb-icon">↩</div>
+            <div>
+                <div class="pb-title">30-Day Returns</div>
+                <div class="pb-desc">Full free collection and refund.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="foot-top">
+            <div>
+                <div class="foot-logo">FORM<span>E</span></div>
+                <p class="foot-about">Luxury furniture conceived in our Florentine studio and crafted by artisans across
+                    Europe.
+                    For homes that value enduring beauty over fleeting trends.</p>
+                <div class="foot-social">
+                    <a href="#">Instagram</a>
+                    <a href="#">Pinterest</a>
+                    <a href="#">Houzz</a>
+                    <a href="#">LinkedIn</a>
+                </div>
+            </div>
+            <div class="foot-col">
+                <h5>Collections</h5>
+                <ul>
+                    <li><a href="#">Living Room</a></li>
+                    <li><a href="#">Bedroom</a></li>
+                    <li><a href="#">Dining Room</a></li>
+                    <li><a href="#">Home Office</a></li>
+                    <li><a href="#">Outdoor</a></li>
+                    <li><a href="#">New Arrivals</a></li>
+                </ul>
+            </div>
+            <div class="foot-col">
+                <h5>Company</h5>
+                <ul>
+                    <li><a href="#">Our Atelier</a></li>
+                    <li><a href="#">Craftspeople</a></li>
+                    <li><a href="#">Sustainability</a></li>
+                    <li><a href="#">Trade Programme</a></li>
+                    <li><a href="#">Press</a></li>
+                    <li><a href="#">Careers</a></li>
+                </ul>
+            </div>
+            <div class="foot-col">
+                <h5>Customer Care</h5>
+                <ul>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Delivery & Assembly</a></li>
+                    <li><a href="#">Returns</a></li>
+                    <li><a href="#">Care Guide</a></li>
+                    <li><a href="#">Warranty</a></li>
+                    <li><a href="#">Finance Options</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="foot-bottom">
+            <p class="foot-copy">© 2025 FORME Studio Ltd. All rights reserved. Registered in England & Wales.</p>
+            <div class="foot-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms & Conditions</a>
+                <a href="#">Cookie Settings</a>
+            </div>
+        </div>
+    </footer>
+
+    <div class="toast" id="toast"></div>
+
+
+    <script>
+        // const cur = document.getElementById('cur'), ring = document.getElementById('curRing');
+        // let mx = 0, my = 0, rx = 0, ry = 0;
+        // document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cur.style.left = mx + 'px'; cur.style.top = my + 'px' });
+        // (function a() { rx += (mx - rx) * .12; ry += (my - ry) * .12; ring.style.left = rx + 'px'; ring.style.top = ry + 'px'; requestAnimationFrame(a) })();
+        // function bindHover() { document.querySelectorAll('a,button,[onclick]').forEach(el => { el.addEventListener('mouseenter', () => { cur.classList.add('hover'); ring.classList.add('hover') }); el.addEventListener('mouseleave', () => { cur.classList.remove('hover'); ring.classList.remove('hover') }); }); }
+        // bindHover();
+        // let tt;
+        // function showToast(msg) { const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(tt); tt = setTimeout(() => t.classList.remove('show'), 3200); }
+        // let cart = JSON.parse(localStorage.getItem('forme_cart') || '[]');
+        // function updateCartBtn() { document.getElementById('cartBtn').textContent = `Cart (${cart.length})`; }
+        // updateCartBtn();
+        // function addCart(name, price) { cart.push({ name, price, qty: 1 }); localStorage.setItem('forme_cart', JSON.stringify(cart)); updateCartBtn(); showToast(`✓ ${name} added to your cart`); }
+        // function wishlist(btn, name) { const on = btn.classList.toggle('active'); btn.textContent = on ? '♥' : '♡'; showToast(on ? `♥ ${name} saved to wishlist` : `Removed from wishlist`); }
+
+        const rooms = {
+            living: {
+                tag: 'Living Room Collection',
+                title: 'Where <em>Life</em> Unfolds',
+                desc: '186 pieces conceived for the room you live in most. From statement sofas to considered side tables — every piece chosen to work beautifully together, or alone.',
+                img: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=900&q=85&fit=crop',
+                pieces: '186', piecesLabel: 'Pieces',
+                delivery: 'Free', deliveryLabel: 'White Glove',
+                products: [
+                    { id: 1, img: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=80&fit=crop', badge: 'new', cat: 'Sofas', name: 'Serene Three-Seater Sofa', material: 'Natural Linen · Solid Oak Frame', price: '$3,200', raw: 3200 },
+                    { id: 2, img: 'https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=600&q=80&fit=crop', badge: 'sale', cat: 'Accent Chairs', name: 'Arc Boucle Accent Chair', material: 'Ivory Boucle · Walnut Legs', price: '$1,190', raw: 1190, was: '$1,490' },
+                    { id: 5, img: 'https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=600&q=80&fit=crop', badge: 'sale', cat: 'Coffee Tables', name: 'Pebble Travertine Table', material: 'Ivory Travertine · Brass Base', price: '$1,490', raw: 1490, was: '$1,890' },
+                    { id: 6, img: 'https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=600&q=80&fit=crop', badge: '', cat: 'Shelving', name: 'Archer Open Bookcase', material: 'Natural Oak · 5 Shelves', price: '$1,280', raw: 1280 },
+                    { id: 7, img: 'https://images.unsplash.com/photo-1598928506311-c55ded91a20c?w=600&q=80&fit=crop', badge: 'new', cat: 'Sofas', name: 'Haven L-Shape Sectional', material: 'Sage Velvet · Brushed Brass', price: '$5,800', raw: 5800 },
+                    { id: 8, img: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=600&q=80&fit=crop', badge: '', cat: 'Side Tables', name: 'Orbit Marble Side Table', material: 'Verde Marble · Matte Black Steel', price: '$890', raw: 890 },
+                ]
+            },
+            bedroom: {
+                tag: 'Bedroom Collection',
+                title: 'Rest in <em>Beauty</em>',
+                desc: '124 pieces for a bedroom that soothes as much as it impresses. Platform beds, nightstands, wardrobes and more — all sharing the language of understated luxury.',
+                img: 'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=900&q=85&fit=crop',
+                pieces: '124', piecesLabel: 'Pieces',
+                delivery: 'Free', deliveryLabel: 'White Glove',
+                products: [
+                    { id: 3, img: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=600&q=80&fit=crop', badge: '', cat: 'Beds', name: 'Nest King Platform Bed', material: 'Smoked Oak · Linen Headboard', price: '$3,850', raw: 3850 },
+                    { id: 9, img: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600&q=80&fit=crop', badge: 'new', cat: 'Beds', name: 'Cloister Canopy Bed', material: 'Solid Walnut · Natural Linen', price: '$4,900', raw: 4900 },
+                    { id: 10, img: 'https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=600&q=80&fit=crop', badge: '', cat: 'Nightstands', name: 'Dune Bedside Table', material: 'White Oak · Cane Panel Door', price: '$780', raw: 780 },
+                    { id: 11, img: 'https://images.unsplash.com/photo-1558997519-83ea9252edf8?w=600&q=80&fit=crop', badge: 'sale', cat: 'Wardrobes', name: 'Horizon Sliding Wardrobe', material: 'Matte White · Antique Brass Rail', price: '$3,100', raw: 3100, was: '$3,600' },
+                    { id: 12, img: 'https://images.unsplash.com/photo-1540518614846-7eded433c457?w=600&q=80&fit=crop', badge: 'new', cat: 'Dressers', name: 'Strata Six-Drawer Dresser', material: 'Natural Oak · Stone Handles', price: '$2,200', raw: 2200 },
+                    { id: 13, img: 'https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=600&q=80&fit=crop', badge: '', cat: 'Mirrors', name: 'Arch Full-Length Mirror', material: 'Solid Oak · Bevelled Glass', price: '$1,100', raw: 1100 },
+                ]
+            },
+            dining: {
+                tag: 'Dining Room Collection',
+                title: 'Gather <em>Around Beauty</em>',
+                desc: '97 pieces for meals worth remembering. Extending tables, considered chairs, and sideboards that hold as much as they express.',
+                img: 'https://images.unsplash.com/photo-1617806118233-18e1de247200?w=900&q=85&fit=crop',
+                pieces: '97', piecesLabel: 'Pieces',
+                delivery: 'Free', deliveryLabel: 'White Glove',
+                products: [
+                    { id: 4, img: 'https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?w=600&q=80&fit=crop', badge: 'new', cat: 'Dining Tables', name: 'Oslo Extending Dining Table', material: 'White Oak · Extends 160–240cm', price: '$2,650', raw: 2650 },
+                    { id: 14, img: 'https://images.unsplash.com/photo-1549187774-b4e9b0445b41?w=600&q=80&fit=crop', badge: '', cat: 'Dining Chairs', name: 'Form Upholstered Dining Chair', material: 'Flax Linen · Beech Frame', price: '$580', raw: 580 },
+                    { id: 15, img: 'https://images.unsplash.com/photo-1538688423619-a81d3f23454b?w=600&q=80&fit=crop', badge: 'sale', cat: 'Sideboards', name: 'Archive Sideboard 180cm', material: 'Smoked Oak · Antique Brass', price: '$2,100', raw: 2100, was: '$2,500' },
+                    { id: 16, img: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=80&fit=crop', badge: 'new', cat: 'Pendants', name: 'Dome Woven Pendant Light', material: 'Natural Rattan · Brass Fitting', price: '$490', raw: 490 },
+                    { id: 17, img: 'https://images.unsplash.com/photo-1616047006789-b7af5afb8c20?w=600&q=80&fit=crop', badge: '', cat: 'Bar Carts', name: 'Atelier Bar Cart', material: 'Solid Brass · Smoked Glass', price: '$1,350', raw: 1350 },
+                    { id: 18, img: 'https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=600&q=80&fit=crop', badge: '', cat: 'Benches', name: 'Crest Oak Dining Bench', material: 'White Oak · Linen Pad', price: '$880', raw: 880 },
+                ]
+            },
+            office: {
+                tag: 'Home Office Collection',
+                title: 'Work with <em>Intention</em>',
+                desc: '63 pieces that transform your workspace into a place of focused calm. Desks, shelving, and seating designed for people who take their work seriously.',
+                img: 'https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=900&q=85&fit=crop',
+                pieces: '63', piecesLabel: 'Pieces',
+                delivery: 'Free', deliveryLabel: 'White Glove',
+                products: [
+                    { id: 19, img: 'https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=600&q=80&fit=crop', badge: 'new', cat: 'Desks', name: 'Bureau Writing Desk 160cm', material: 'White Oak · Leather Pad', price: '$2,400', raw: 2400 },
+                    { id: 20, img: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=600&q=80&fit=crop', badge: '', cat: 'Office Chairs', name: 'Spine Ergonomic Chair', material: 'Merino Wool · Polished Aluminium', price: '$1,800', raw: 1800 },
+                    { id: 6, img: 'https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=600&q=80&fit=crop', badge: '', cat: 'Shelving', name: 'Archer Open Bookcase', material: 'Natural Oak · 5 Shelves', price: '$1,280', raw: 1280 },
+                    { id: 21, img: 'https://images.unsplash.com/photo-1498409785966-ab341407de6e?w=600&q=80&fit=crop', badge: 'sale', cat: 'Filing', name: 'Frame Filing Cabinet', material: 'Powder White · Solid Brass', price: '$890', raw: 890, was: '$1,050' },
+                    { id: 22, img: 'https://images.unsplash.com/photo-1526045612212-70caf35c14df?w=600&q=80&fit=crop', badge: 'new', cat: 'Desks', name: 'Corner Studio Desk', material: 'Smoked Oak · Cable Management', price: '$3,200', raw: 3200 },
+                    { id: 23, img: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600&q=80&fit=crop', badge: '', cat: 'Lighting', name: 'Task Arc Floor Lamp', material: 'Matte Black · Linen Shade', price: '$620', raw: 620 },
+                ]
+            },
+            outdoor: {
+                tag: 'Outdoor Collection',
+                title: 'Extend <em>Living Outside</em>',
+                desc: '52 pieces that bring the considered interior to your garden, terrace, or courtyard. Weather-resistant materials with no compromise on aesthetic.',
+                img: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=900&q=85&fit=crop',
+                pieces: '52', piecesLabel: 'Pieces',
+                delivery: 'Free', deliveryLabel: 'White Glove',
+                products: [
+                    { id: 24, img: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=600&q=80&fit=crop', badge: 'new', cat: 'Sofas', name: 'Palma Outdoor Sofa', material: 'Teak · Sunbrella Linen', price: '$4,200', raw: 4200 },
+                    { id: 25, img: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=80&fit=crop', badge: '', cat: 'Dining', name: 'Terrace Dining Table 220cm', material: 'Certified Teak · Powder Steel', price: '$2,800', raw: 2800 },
+                    { id: 26, img: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80&fit=crop', badge: 'sale', cat: 'Loungers', name: 'Haven Sun Lounger', material: 'Teak · Sand Sunbrella', price: '$1,600', raw: 1600, was: '$1,900' },
+                    { id: 27, img: 'https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=600&q=80&fit=crop', badge: 'new', cat: 'Chairs', name: 'Breeze Outdoor Armchair', material: 'Aluminium · Rope Weave', price: '$980', raw: 980 },
+                    { id: 28, img: 'https://images.unsplash.com/photo-1598928506311-c55ded91a20c?w=600&q=80&fit=crop', badge: '', cat: 'Side Tables', name: 'Petal Side Table Set', material: 'Powder Coated Steel · Teak', price: '$540', raw: 540 },
+                    { id: 29, img: 'https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=600&q=80&fit=crop', badge: '', cat: 'Accessories', name: 'Oasis Planter Stand', material: 'Corten Steel · Oak', price: '$380', raw: 380 },
+                ]
+            }
+        };
+
+        function renderRoom(key) {
+            const r = rooms[key];
+            return `
+  <div class="room-feature">
+    <div class="rf-img"><img src="${r.img}" alt="${r.tag}" loading="lazy"/></div>
+    <div class="rf-content">
+      <p class="rf-tag">${r.tag}</p>
+      <h2 class="rf-title">${r.title}</h2>
+      <p class="rf-desc">${r.desc}</p>
+      <div class="rf-stats">
+        <div><div class="rf-stat-num">${r.pieces}</div><div class="rf-stat-label">${r.piecesLabel}</div></div>
+        <div><div class="rf-stat-num">${r.delivery}</div><div class="rf-stat-label">${r.deliveryLabel}</div></div>
+      </div>
+      <button class="btn-ink" onclick="document.getElementById('productsGrid').scrollIntoView({behavior:'smooth'})">Browse the Collection</button>
+    </div>
+  </div>
+  <div class="products-section">
+    <div class="products-header">
+      <h3>${r.tag.split(' ').slice(0, -1).join(' ')} <em>Pieces</em></h3>
+      <div class="filter-bar">
+        <span class="filter-label">Sort by</span>
+        <select class="filter-select" onchange="showToast('Sorting applied')">
+          <option>Recommended</option>
+          <option>Price: Low to High</option>
+          <option>Price: High to Low</option>
+          <option>Newest</option>
+        </select>
+      </div>
+    </div>
+    <div class="product-grid" id="productsGrid">
+      ${r.products.map(p => `
+      <div class="product-card">
+        <div class="p-img">
+          <img src="${p.img}" alt="${p.name}" loading="lazy"/>
+          ${p.badge ? `<span class="p-badge ${p.badge}">${p.badge === 'new' ? 'New' : 'Sale'}</span>` : ''}
+          <button class="p-wish" onclick="wishlist(this,'${p.name}')">♡</button>
+        </div>
+        <div class="p-body">
+          <div class="p-cat">${p.cat}</div>
+          <div class="p-name" onclick="window.location='product.html?id=${p.id}'">${p.name}</div>
+          <div class="p-material">${p.material}</div>
+          <div class="p-foot">
+            <div class="p-price">${p.was ? `<s>${p.was}</s>` : ''}${p.price}</div>
+            <button class="p-add" onclick="addCart('${p.name}',${p.raw})">Add to Cart</button>
+          </div>
+        </div>
+      </div>`).join('')}
+    </div>
+  </div>`;
+        }
+
+        let activeRoom = 'living';
+        function switchRoom(key, btn) {
+            activeRoom = key;
+            document.querySelectorAll('.room-tab').forEach(t => t.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById('roomContent').innerHTML = renderRoom(key);
+            setTimeout(() => {
+                document.querySelectorAll('.product-card').forEach((c, i) => { setTimeout(() => c.classList.add('visible'), i * 80); });
+                bindHover();
+            }, 50);
+        }
+
+        // init
+        const params = new URLSearchParams(window.location.search);
+        const roomParam = params.get('room');
+        if (roomParam && rooms[roomParam]) {
+            document.querySelectorAll('.room-tab').forEach(t => {
+                t.classList.remove('active');
+                if (t.dataset.room === roomParam) t.classList.add('active');
+            });
+            activeRoom = roomParam;
+        }
+        document.getElementById('roomContent').innerHTML = renderRoom(activeRoom);
+        setTimeout(() => {
+            document.querySelectorAll('.product-card').forEach((c, i) => { setTimeout(() => c.classList.add('visible'), i * 80); });
+            bindHover();
+        }, 50);
+
+    </script>
+</body>
+
+
+</html>
+<script src="script.js"></script>

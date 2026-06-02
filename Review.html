@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Review — FORME</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Jost:wght@200;300;400;500&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<script>
+    // ADD THIS AT THE VERY TOP OF YOUR INLINE SCRIPT
+    // ===============================================
+    function toggleMenu() {
+        const menu = document.getElementById('mobileMenu');
+        const btn = document.getElementById('hamburger');
+        if (!menu || !btn) return;
+        const open = menu.classList.toggle('open');
+        btn.classList.toggle('open', open);
+        document.body.style.overflow = open ? 'hidden' : '';
+    }
+    function closeMobileMenu() {
+        const menu = document.getElementById('mobileMenu');
+        const btn = document.getElementById('hamburger');
+        if (!menu || !btn) return;
+        menu.classList.remove('open');
+        btn.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+    // ===============================================
+
+    // ... then the rest of your inline script ...
+</script>
+
+<body>
+
+    <!-- CUSTOM CURSOR  -->
+
+    <div class="cursor" id="cur"></div>
+    <div class="cursor-ring" id="curRing"></div>
+
+    <!-- MOBILE MENU -->
+
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="Collection.html" onclick="closeMobileMenu()">Collections</a>
+        <a href="Shop.html" onclick="closeMobileMenu()">Shop</a>
+        <a href="Atelier.html" onclick="closeMobileMenu()">Atelier</a>
+        <a href="Review.html" onclick="closeMobileMenu()">Reviews</a>
+        <a href="Contact.html" onclick="closeMobileMenu()">Contact</a>
+        <div class="mobile-menu-actions">
+            <a href="#">Search</a>
+            <a href="#">Wishlist</a>
+            <button class="nav-cart" id="mobileCartBtn" style="cursor:pointer"
+                onclick="showToast('🛒 Your cart is empty — start exploring')">Cart (0)</button>
+        </div>
+    </div>
+
+    <!-- NAV -->
+
+    <nav>
+        <a href="index.html" class="nav-logo">FORM<span style="font-style:italic">E</span></a>
+        <div class="nav-center">
+            <a href="Collection.html">Collections</a>
+            <a href="Shop.html">Shop</a>
+            <a href="Atelier.html">Atelier</a>
+            <a href="Review.html" class="active">Reviews</a>
+            <a href="Contact.html">Contact</a>
+        </div>
+        <div class="nav-right">
+            <a href="#">Search</a>
+            <a href="#">Wishlist</a>
+            <button class="nav-cart" id="cartBtn" onclick="showToast('🛒 Your cart is empty — start exploring')">Cart
+                (0)</button>
+            <button class="nav-hamburger" id="hamburger" aria-label="Open menu" onclick="toggleMenu()">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+
+    <div class="page-hero">
+        <p class="ph-tag">Customer Stories</p>
+        <h1 class="ph-title">Homes That <em>Love Us Back</em></h1>
+        <p class="ph-sub">Thousands of customers have made FORME part of their everyday lives. Read what they have to
+            say
+            about our furniture, service, and the difference thoughtful design makes.</p>
+        <div class="rating-summary">
+            <div>
+                <div class="rating-big">4.92</div>
+                <div class="rating-stars">★★★★★</div>
+                <div class="rating-text">Overall rating</div>
+            </div>
+            <div>
+                <div class="rating-big">2,847</div>
+                <div class="rating-stars">★★★★★</div>
+                <div class="rating-text">Verified reviews</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="stats-banner">
+        <div class="stat-item">
+            <div class="stat-number">98%</div>
+            <div class="stat-label">Would recommend</div>
+            <div class="stat-stars">★★★★★</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">5★</div>
+            <div class="stat-label">Average delivery rating</div>
+            <div class="stat-stars">★★★★★</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">94%</div>
+            <div class="stat-label">Repeat customers</div>
+            <div class="stat-stars">★★★★★</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">2.3k+</div>
+            <div class="stat-label">Photos shared</div>
+            <div class="stat-stars">★★★★★</div>
+        </div>
+    </div>
+
+    <div class="filter-tabs" id="filterTabs">
+        <button class="filter-tab active" data-filter="all" onclick="filterReviews('all',this)">All Reviews</button>
+        <button class="filter-tab" data-filter="5" onclick="filterReviews('5',this)">★★★★★ (5 Star)</button>
+        <button class="filter-tab" data-filter="4" onclick="filterReviews('4',this)">★★★★☆ (4 Star)</button>
+        <button class="filter-tab" data-filter="with-photo" onclick="filterReviews('with-photo',this)">With
+            Photos</button>
+        <button class="filter-tab" data-filter="featured" onclick="filterReviews('featured',this)">Featured</button>
+    </div>
+
+    <section class="reviews-section">
+        <div class="reviews-grid" id="reviewsGrid">
+            <!-- Reviews will be dynamically rendered here -->
+        </div>
+    </section>
+
+    <div class="spotlight-section">
+        <div class="spotlight-inner">
+            <div class="spotlight-quote">
+                <blockquote>The Serene sofa arrived and completely changed how our family uses the living room. It's not
+                    just
+                    beautiful — it's the most comfortable piece of furniture we've ever owned. The delivery team placed
+                    everything
+                    perfectly.</blockquote>
+                <div class="spotlight-author">Sarah R.</div>
+                <div class="spotlight-product">Serene Three-Seater Sofa · Natural Linen</div>
+                <div class="spotlight-stars">★★★★★</div>
+            </div>
+            <div class="spotlight-img">
+                <img src="https://images.unsplash.com/photo-1600210491892-03d54bc0fbab?w=800&q=85&fit=crop"
+                    alt="Customer living room" loading="lazy" />
+            </div>
+        </div>
+    </div>
+
+    <div class="write-review" id="writeReview">
+        <div class="write-inner">
+            <div class="write-left">
+                <p class="s-tag">Share Your Experience</p>
+                <h2 class="s-title">Write a <em>Review</em></h2>
+                <p class="write-desc">Have you recently purchased from FORME? We'd love to hear about your experience.
+                    Share
+                    your story and help others find furniture that will last a lifetime.</p>
+                <p class="write-desc" style="margin-top:.5rem">Every verified review enters you into our quarterly
+                    giveaway — a
+                    $500 FORME gift card.</p>
+            </div>
+            <div class="write-right">
+                <div class="review-form">
+                    <div class="form-row">
+                        <input type="text" class="review-input" placeholder="Your name" id="reviewName">
+                        <input type="text" class="review-input" placeholder="Product purchased" id="reviewProduct">
+                    </div>
+                    <input type="text" class="review-input" placeholder="Review title" id="reviewTitle">
+                    <div class="rating-select">
+                        <span class="rating-label">Your rating:</span>
+                        <div class="star-picker" id="starPicker">
+                            <span data-rating="1">☆</span><span data-rating="2">☆</span><span
+                                data-rating="3">☆</span><span data-rating="4">☆</span><span data-rating="5">☆</span>
+                        </div>
+                    </div>
+                    <textarea rows="4" class="review-textarea" placeholder="Share your experience with this product..."
+                        id="reviewText"></textarea>
+                    <button class="btn-submit" onclick="submitReview()">Submit Review</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="promise-bar">
+        <div class="pb-item">
+            <div class="pb-icon">🚚</div>
+            <div>
+                <div class="pb-title">White Glove Delivery</div>
+                <div class="pb-desc">Delivered, assembled, and placed.</div>
+            </div>
+        </div>
+        <div class="pb-item">
+            <div class="pb-icon">🌿</div>
+            <div>
+                <div class="pb-title">Sustainably Sourced</div>
+                <div class="pb-desc">100% FSC-certified timber.</div>
+            </div>
+        </div>
+        <div class="pb-item">
+            <div class="pb-icon">🔧</div>
+            <div>
+                <div class="pb-title">Lifetime Warranty</div>
+                <div class="pb-desc">Every structural element, forever.</div>
+            </div>
+        </div>
+        <div class="pb-item">
+            <div class="pb-icon">↩</div>
+            <div>
+                <div class="pb-title">30-Day Returns</div>
+                <div class="pb-desc">Full free collection and refund.</div>
+            </div>
+        </div>
+    </div>
+
+
+    <footer>
+        <div class="foot-top">
+            <div>
+                <div class="foot-logo">FORM<span>E</span></div>
+                <p class="foot-about">Luxury furniture conceived in our Florentine studio and crafted by artisans across
+                    Europe.
+                    For homes that value enduring beauty over fleeting trends.</p>
+                <div class="foot-social">
+                    <a href="#">Instagram</a>
+                    <a href="#">Pinterest</a>
+                    <a href="#">Houzz</a>
+                    <a href="#">LinkedIn</a>
+                </div>
+            </div>
+            <div class="foot-col">
+                <h5>Collections</h5>
+                <ul>
+                    <li><a href="#">Living Room</a></li>
+                    <li><a href="#">Bedroom</a></li>
+                    <li><a href="#">Dining Room</a></li>
+                    <li><a href="#">Home Office</a></li>
+                    <li><a href="#">Outdoor</a></li>
+                    <li><a href="#">New Arrivals</a></li>
+                </ul>
+            </div>
+            <div class="foot-col">
+                <h5>Company</h5>
+                <ul>
+                    <li><a href="#">Our Atelier</a></li>
+                    <li><a href="#">Craftspeople</a></li>
+                    <li><a href="#">Sustainability</a></li>
+                    <li><a href="#">Trade Programme</a></li>
+                    <li><a href="#">Press</a></li>
+                    <li><a href="#">Careers</a></li>
+                </ul>
+            </div>
+            <div class="foot-col">
+                <h5>Customer Care</h5>
+                <ul>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Delivery & Assembly</a></li>
+                    <li><a href="#">Returns</a></li>
+                    <li><a href="#">Care Guide</a></li>
+                    <li><a href="#">Warranty</a></li>
+                    <li><a href="#">Finance Options</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="foot-bottom">
+            <p class="foot-copy">© 2025 FORME Studio Ltd. All rights reserved. Registered in England & Wales.</p>
+            <div class="foot-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms & Conditions</a>
+                <a href="#">Cookie Settings</a>
+            </div>
+        </div>
+    </footer>
+
+    <div class="toast" id="toast"></div>
+
+
+    <script>
+        // Cursor
+        // const cur = document.getElementById('cur'), ring = document.getElementById('curRing');
+        // let mx = 0, my = 0, rx = 0, ry = 0;
+        // document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cur.style.left = mx + 'px'; cur.style.top = my + 'px' });
+        // (function a() { rx += (mx - rx) * .12; ry += (my - ry) * .12; ring.style.left = rx + 'px'; ring.style.top = ry + 'px'; requestAnimationFrame(a) })();
+        // function bindHover() { document.querySelectorAll('a,button,[onclick]').forEach(el => { el.addEventListener('mouseenter', () => { cur.classList.add('hover'); ring.classList.add('hover') }); el.addEventListener('mouseleave', () => { cur.classList.remove('hover'); ring.classList.remove('hover') }); }); }
+        // bindHover();
+
+        // Toast
+        // let tt;
+        // function showToast(msg) { const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(tt); tt = setTimeout(() => t.classList.remove('show'), 3200); }
+
+        // Cart
+        // let cart = JSON.parse(localStorage.getItem('forme_cart') || '[]');
+        // function updateCartBtn() { document.getElementById('cartBtn').textContent = `Cart (${cart.length}`; }
+        // updateCartBtn();
+
+        // Reviews Data
+        let reviews = [
+            { id: 1, name: "Sarah R.", place: "London, UK", product: "Serene Three-Seater Sofa", title: "Absolutely transformed our living room", text: "The quality is outstanding. After 8 months, it still looks brand new and has become the most loved spot in our home. The linen is durable yet soft, and the oak frame feels solid.", rating: 5, featured: true, photo: true },
+            { id: 2, name: "Marcus K.", place: "Amsterdam, NL", product: "Oslo Extending Dining Table", title: "Worth every euro", text: "Three months searching for the right dining table. The Oslo was worth every wait. Solid, elegant, and my guests comment on it every single time. The extension mechanism is seamless.", rating: 5, featured: false, photo: false },
+            { id: 3, name: "Amelia L.", place: "New York, US", product: "Arc Boucle Accent Chair", title: "The perfect reading corner", text: "This chair is exactly what our living room needed. The boucle is incredibly soft, and the walnut legs add warmth. Delivery was flawless — they unpacked and placed it perfectly.", rating: 5, featured: true, photo: true },
+            { id: 4, name: "David C.", place: "Toronto, CA", product: "Nest King Platform Bed", title: "Best sleep in years", text: "Solid, quiet, and beautiful. The smoked oak finish is stunning, and the linen headboard adds a softness to the bedroom. Assembly took 20 minutes.", rating: 5, featured: false, photo: false },
+            { id: 5, name: "Elena M.", place: "Milan, IT", product: "Pebble Travertine Table", title: "A sculptural masterpiece", text: "Every time someone visits, they ask about this table. The travertine has beautiful natural veining, and the brass base is a perfect contrast. Arrived perfectly packed.", rating: 5, featured: true, photo: true },
+            { id: 6, name: "Thomas B.", place: "Sydney, AU", product: "Archer Open Bookcase", title: "Simple, elegant, functional", text: "Exactly what I wanted — no frills, just beautiful oak shelving. The proportions are perfect, and it holds all our books without sagging.", rating: 4, featured: false, photo: false },
+            { id: 7, name: "Clara W.", place: "Paris, FR", product: "Arc Boucle Accent Chair", title: "Two of these frame our fireplace", text: "We bought a pair and they are stunning. The craftsmanship is evident in every stitch. My only regret is not buying them sooner.", rating: 5, featured: false, photo: true },
+            { id: 8, name: "James P.", place: "Chicago, US", product: "Oslo Extending Dining Table", title: "Family dinners are better now", text: "We host large gatherings, and the extension makes it possible to seat 10 comfortably. The wood grain is gorgeous.", rating: 5, featured: false, photo: false }
+        ];
+
+        let currentFilter = 'all';
+
+        function renderReviews(filter) {
+            let filtered = [...reviews];
+            if (filter === '5') filtered = reviews.filter(r => r.rating === 5);
+            else if (filter === '4') filtered = reviews.filter(r => r.rating === 4);
+            else if (filter === 'with-photo') filtered = reviews.filter(r => r.photo);
+            else if (filter === 'featured') filtered = reviews.filter(r => r.featured);
+
+            const grid = document.getElementById('reviewsGrid');
+            grid.innerHTML = filtered.map(r => `
+    <div class="review-card reveal">
+      <div class="review-stars">${'★'.repeat(r.rating)}${'☆'.repeat(5 - r.rating)}</div>
+      <div class="review-title">${r.title}</div>
+      <div class="review-text">"${r.text.substring(0, 120)}${r.text.length > 120 ? '…' : ''}"</div>
+      <div class="review-author">
+        <div class="review-av">${r.name.charAt(0)}${r.name.split(' ')[1]?.charAt(0) || ''}</div>
+        <div>
+          <div class="review-name">${r.name}</div>
+          <div class="review-place">${r.place}</div>
+          <div class="review-product">${r.product}</div>
+        </div>
+      </div>
+    </div>
+  `).join('');
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        }
+
+        function filterReviews(filter, btn) {
+            currentFilter = filter;
+            document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+            btn.classList.add('active');
+            renderReviews(filter);
+        }
+
+        // Star picker
+        let selectedRating = 0;
+        function initStarPicker() {
+            const stars = document.querySelectorAll('#starPicker span');
+            stars.forEach((star, i) => {
+                star.addEventListener('click', () => {
+                    selectedRating = i + 1;
+                    stars.forEach((s, idx) => {
+                        s.textContent = idx < selectedRating ? '★' : '☆';
+                        if (idx < selectedRating) s.classList.add('selected');
+                        else s.classList.remove('selected');
+                    });
+                });
+                star.addEventListener('mouseenter', () => {
+                    const idx = parseInt(star.dataset.rating) - 1;
+                    stars.forEach((s, pos) => {
+                        s.textContent = pos <= idx ? '★' : '☆';
+                    });
+                });
+                star.addEventListener('mouseleave', () => {
+                    stars.forEach((s, idx) => {
+                        s.textContent = idx < selectedRating ? '★' : '☆';
+                    });
+                });
+            });
+        }
+
+        function submitReview() {
+            const name = document.getElementById('reviewName').value.trim();
+            const product = document.getElementById('reviewProduct').value.trim();
+            const title = document.getElementById('reviewTitle').value.trim();
+            const text = document.getElementById('reviewText').value.trim();
+            if (!name) { showToast('Please enter your name'); return }
+            if (!product) { showToast('Please enter the product name'); return }
+            if (!title) { showToast('Please enter a review title'); return }
+            if (!text) { showToast('Please share your experience'); return }
+            if (selectedRating === 0) { showToast('Please select a rating'); return }
+            const newReview = {
+                id: reviews.length + 1,
+                name: name,
+                place: "Customer",
+                product: product,
+                title: title,
+                text: text,
+                rating: selectedRating,
+                featured: false,
+                photo: false
+            };
+            reviews.unshift(newReview);
+            renderReviews(currentFilter);
+            showToast(`✓ Thank you, ${name.split(' ')[0]}! Your review has been submitted.`);
+            document.getElementById('reviewName').value = '';
+            document.getElementById('reviewProduct').value = '';
+            document.getElementById('reviewTitle').value = '';
+            document.getElementById('reviewText').value = '';
+            selectedRating = 0;
+            document.querySelectorAll('#starPicker span').forEach(s => { s.textContent = '☆'; s.classList.remove('selected'); });
+        }
+
+        // Intersection Observer for reveals
+        const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('up'); observer.unobserve(e.target) } }) }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        document.querySelectorAll('.review-card').forEach(el => el.classList.add('reveal'));
+
+        // Initialize
+        renderReviews('all');
+        initStarPicker();
+    </script>
+</body>
+
+
+</html>
+<script src="script.js"></script>
